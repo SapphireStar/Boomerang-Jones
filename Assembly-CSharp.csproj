@@ -64,7 +64,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Hero Knight - Pixel Art\ColorSwap\ColorSwap_HeroKnight.cs" />
+    <Compile Include="Assets\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
+    <Compile Include="Assets\Hero Knight - Pixel Art\Demo\HeroKnight.cs" />
+    <Compile Include="Assets\Hero Knight - Pixel Art\Demo\Sensor_HeroKnight.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\ComboCharacter.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\GroundComboState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\GroundEntryState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\GroundFinisherState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\IdleCombatState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeBaseState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeEntryState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeStateMachine.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\State.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
@@ -92,6 +104,7 @@
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <None Include="Assets\Scripts\References\log4net.xml" />
+    <None Include="Assets\Hero Knight - Pixel Art\ColorSwap\Sprites-ColorSwap.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -646,6 +659,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:/GitHub/Game_Projects/BaseEnvironment/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>E:/GitHub/Game_Projects/BaseEnvironment/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/GitHub/Game_Projects/BaseEnvironment/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

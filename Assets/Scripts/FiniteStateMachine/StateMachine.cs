@@ -5,11 +5,15 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public string customName;
-    private State mainStateType;
+    protected State mainStateType;
     public State CurrentState { get; private set; }
 
     private State nextState;
 
+    public void Awake()
+    {
+        SetNextStateToMain();
+    }
 
     private void Update()
     {
@@ -39,6 +43,10 @@ public class StateMachine : MonoBehaviour
         if (_newState != null)
             nextState = _newState;
     }
+    public void SetNextStateToMain()
+    {
+        nextState = mainStateType;
+    }
 
     private void FixedUpdate()
     {
@@ -49,5 +57,16 @@ public class StateMachine : MonoBehaviour
     {
         if (CurrentState != null)
             CurrentState.onLateUpdate();
+    }
+
+    private void OnValidate()
+    {
+        if (mainStateType == null)
+        {
+            if (customName == "Combat")
+            {
+                mainStateType = new IdleCombatState();
+            }
+        }
     }
 }

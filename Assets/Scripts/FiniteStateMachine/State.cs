@@ -39,7 +39,7 @@ public abstract class State
         Object.Destroy(obj);
     }
 
-    protected T Getcomponent<T>() where T : Component { return stateMachine.GetComponent<T>(); }
+    protected T GetComponent<T>() where T : Component { return stateMachine.GetComponent<T>(); }
 
     protected Component GetComponent(System.Type type) { return stateMachine.GetComponent(type); }
 

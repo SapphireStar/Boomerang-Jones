@@ -30,4 +30,10 @@ public class UIMain : MonoBehaviour
         MessageBox.Show("测试错误消息框", "Test", MessageBoxType.Error, "确认", "取消");
     }
 
+    public void OnClickNextScene()
+    {
+        SceneManager.Instance.LoadScene("BattleScene");
+        SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
+    }
+
 }
