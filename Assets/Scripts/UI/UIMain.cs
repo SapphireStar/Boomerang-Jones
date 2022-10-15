@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utilities;
 using UnityEngine;
 
 public class UIMain : MonoBehaviour
@@ -32,6 +33,7 @@ public class UIMain : MonoBehaviour
 
     public void OnClickNextScene()
     {
+        Log.InfoFormat("EnterBattleScene");
         SceneManager.Instance.LoadScene("BattleScene");
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
     }

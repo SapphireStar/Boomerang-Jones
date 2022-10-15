@@ -40,7 +40,7 @@ public class LoadingManager : MonoBehaviour {
 
         yield return DataManager.Instance.LoadData();
 
-
+        
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Login);
 /*        for (float i = 50; i < 100;)
         {
