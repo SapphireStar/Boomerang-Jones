@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class UIGameOver : UIWindow
 {
+    /// <summary>
+    /// 游戏重新开始，发送重开事件
+    /// </summary>
     public void OnClickRestart()
     {
         SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         SceneManager.Instance.LoadScene("BattleScene");
-        Player.Instance.IsDead = false;
+        EventManager.Instance.SendEvent("RestartGame",new object[] { });
     }
 }

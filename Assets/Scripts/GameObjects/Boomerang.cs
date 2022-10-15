@@ -71,7 +71,7 @@ public class Boomerang : MonoBehaviour
         if(collision.gameObject == Player.Instance.Character&&duration<=0)
         {
             Player.Instance.IsDead = true;
-            
+            EventManager.Instance.SendEvent("GameOver", new object[] { });
         }
     }
 }

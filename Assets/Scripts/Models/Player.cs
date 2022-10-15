@@ -26,9 +26,34 @@ public class Player : Singleton<Player>
             }
         }
     }
+
+    private int killCount;
+    public int KillCount
+    {
+        get { return killCount; }
+        set
+        {
+            killCount = value;
+            EventManager.Instance.SendEvent("SetKillCount", new object[] { killCount });
+        }
+    }
     public Player()
     {
         Force = 5;
         Speed = 5;
+        EventManager.Instance.Subscribe("RestartGame", Reset);
+    }
+    ~Player()
+    {
+        EventManager.Instance.Unsubscribe("RestartGame", Reset);
+    }
+
+    //在游戏重新开始时需要重设的值
+    public void Reset(object[] param)
+    {
+        Force = 5;
+        Speed = 5;
+        KillCount = 0;
+        IsDead = false;
     }
 }

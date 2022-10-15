@@ -80,12 +80,14 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\State.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Boomerang.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\EnemyController.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PlayerController.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Models\Player.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
@@ -97,7 +99,8 @@
     <Compile Include="Assets\Scripts\UI\TabView\TabButton.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabView.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
-    <Compile Include="Assets\Scripts\UI\UIMain.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMainBattle.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\UISystemConfig.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
