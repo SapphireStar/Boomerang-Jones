@@ -6,6 +6,7 @@ using UnityEngine;
 public class Boomerang : MonoBehaviour
 {
     public float rotationSpeed = 5;
+    
 
     private Vector2 direction;
     private float duration = 0.2f;   
@@ -15,6 +16,7 @@ public class Boomerang : MonoBehaviour
     private float maxSpeed;
 
     private Rigidbody2D rigidbody;
+    
     // Start is called before the first frame update
     public void Awake()
     {
@@ -62,5 +64,14 @@ public class Boomerang : MonoBehaviour
         rigidbody.AddForce(new Vector2(_direction.x, _direction.y).normalized*_force);
         this.force = _force;
         this.owner = _owner;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject == Player.Instance.Character&&duration<=0)
+        {
+            Player.Instance.IsDead = true;
+            
+        }
     }
 }

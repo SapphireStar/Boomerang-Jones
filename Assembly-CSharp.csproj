@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Models\Player.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabButton.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabView.cs" />
+    <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\UI\UIMain.cs" />
     <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\UISystemConfig.cs" />

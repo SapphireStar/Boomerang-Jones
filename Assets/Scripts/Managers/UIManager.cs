@@ -21,6 +21,7 @@ namespace Assets.Scripts.Managers
         public UIManager()
         {
             this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resource = "UI/UISystemConfig", Cache = true });
+            this.UIResources.Add(typeof(UIGameOver), new UIElement() { Resource = "UI/UIGameOver", Cache = true });
         }
         ~UIManager()
         {
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Managers
                     {
                         return default(T);
                     }
-                    info.Instance =(GameObject)GameObject.Instantiate(prefab, GameObject.Find("Canvas").transform);
+                    info.Instance = (GameObject)GameObject.Instantiate(prefab, GameObject.Find("Canvas").transform);
                     info.Instance.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
                 }
                 return info.Instance.GetComponent<T>();
