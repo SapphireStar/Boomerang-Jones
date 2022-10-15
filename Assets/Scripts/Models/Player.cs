@@ -39,7 +39,7 @@ public class Player : Singleton<Player>
     }
     public Player()
     {
-        Force = 5;
+        Force = 3;
         Speed = 5;
         EventManager.Instance.Subscribe("RestartGame", Reset);
     }
@@ -51,7 +51,7 @@ public class Player : Singleton<Player>
     //在游戏重新开始时需要重设的值
     public void Reset(object[] param)
     {
-        Force = 5;
+        Force = 3;
         Speed = 5;
         KillCount = 0;
         IsDead = false;

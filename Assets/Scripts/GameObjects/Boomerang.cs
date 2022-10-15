@@ -9,7 +9,7 @@ public class Boomerang : MonoBehaviour
     
 
     private Vector2 direction;
-    private float duration = 0.2f;   
+    private float duration = 0.15f;   
     private float currentRotate = 0;
     private float force;
     private GameObject owner;
@@ -32,6 +32,7 @@ public class Boomerang : MonoBehaviour
     {
 
         Rotate();
+        
     }
 
     private void FixedUpdate()
@@ -41,17 +42,30 @@ public class Boomerang : MonoBehaviour
 
     private void Return()
     {
+/*        if (transform.position.x < -8||transform.position.x>8)
+        {
+            rigidbody.velocity = new Vector2(-rigidbody.velocity.x/1.5f, rigidbody.velocity.y/1.5f);
+        }
+        if(transform.position.y > 4.8 || transform.position.y < -4.8)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x/ 1.5f, -rigidbody.velocity.y/ 1.5f);
+        }*/
         if (duration > 0)
         {
             //一开始投出回旋镖后，向前飞行一段距离再返回
-            rigidbody.AddForce(new Vector2(direction.x, direction.y) * force);
+            rigidbody.AddForce(new Vector2(direction.x, direction.y).normalized * force*2);
             duration -= Time.deltaTime;
         }
         else if (Vector3.Distance(this.transform.position, owner.transform.position) > 0)
         {
             //向量归一化，防止速度过快
-            rigidbody.AddForce((owner.transform.position - this.transform.position).normalized * force);
+            float playerBoomerangDistance =Vector3.Distance(owner.transform.position, this.transform.position);
+            // if (playerBoomerangDistance < 3) playerBoomerangDistance = 2;
+            // if (playerBoomerangDistance > 6) playerBoomerangDistance = 8;
+            rigidbody.AddForce((owner.transform.position - this.transform.position).normalized * force * playerBoomerangDistance);
+            // rigidbody.AddForce((owner.transform.position - this.transform.position).normalized * 10 * force / playerBoomerangDistance);
         }
+
     }
     private void Rotate()
     {

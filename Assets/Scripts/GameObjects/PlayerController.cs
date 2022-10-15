@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
     }
     private void Movement()
     {
-        if (Mathf.Abs(Input.GetAxis("Horizontal"))>0.1)
+        if (Mathf.Abs(Input.GetAxis("Horizontal"))>0.2)
         {
             transform.position += new Vector3(Input.GetAxis("Horizontal") * Player.Instance.Speed * Time.deltaTime, 0, 0);
         }
-        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1)
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.2)
         {
             transform.position += new Vector3(0, Input.GetAxis("Vertical") * Player.Instance.Speed * Time.deltaTime, 0);
         }
