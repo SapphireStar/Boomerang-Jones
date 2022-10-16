@@ -12,6 +12,21 @@ public class StateMachine : MonoBehaviour
 
     public void Awake()
     {
+        if (mainStateType == null)
+        {
+            if (customName == "Combat")
+            {
+                mainStateType = new IdleCombatState();
+            }
+            else if (customName == "NormalEnemy")
+            {
+                mainStateType = new NormalEnemyTraceState();
+            }
+            else if(customName == "SpiderEnemy")
+            {
+                mainStateType = new SpiderEnemyTraceState();
+            }
+        }
         SetNextStateToMain();
     }
 
@@ -61,12 +76,6 @@ public class StateMachine : MonoBehaviour
 
     private void OnValidate()
     {
-        if (mainStateType == null)
-        {
-            if (customName == "Combat")
-            {
-                mainStateType = new IdleCombatState();
-            }
-        }
+
     }
 }

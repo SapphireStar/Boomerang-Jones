@@ -1,0 +1,20 @@
+{
+  "1": {
+    "ID": 1,
+    "Name": "NormalEnemy",
+    "Speed": 3.0,
+    "Attack": 20.0,
+    "Health": 50.0,
+    "AtkCD": 0.5,
+    "Path": "GameObjects/Enemies/NormalEnemy"
+  },
+  "2": {
+    "ID": 2,
+    "Name": "SpiderEnemy",
+    "Speed": 7.0,
+    "Attack": 20.0,
+    "Health": 50.0,
+    "AtkCD": 0.5,
+    "Path": "GameObjects/Enemies/SpiderlEnemy"
+  }
+}

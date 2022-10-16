@@ -21,11 +21,13 @@ public class EventManager : Singleton<EventManager>
             events[eventType] -= action;
     }
 
-    public void SendEvent(string eventType,object[] _params)
+    public void SendEvent(string eventType,object[] _params = null)
     {
         if (events.ContainsKey(eventType))
         {
             events[eventType]?.Invoke(_params);
         }
     }
+
+
 }

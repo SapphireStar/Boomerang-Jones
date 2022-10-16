@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public class DataManager : Singleton<DataManager>
 {
     public string DataPath;
-
+    public Dictionary<int, EnemyDefine> Enemies;
 
 
     public DataManager()
@@ -22,8 +22,8 @@ public class DataManager : Singleton<DataManager>
 
     public void Load()
     {
-/*        string json = File.ReadAllText(this.DataPath + "MapDefine.txt");
-        this.Maps = JsonConvert.DeserializeObject<Dictionary<int, MapDefine>>(json);*/
+        string json = File.ReadAllText(this.DataPath + "EnemyDefine.txt");
+        this.Enemies = JsonConvert.DeserializeObject<Dictionary<int, EnemyDefine>>(json);
 
     }
 
@@ -31,7 +31,8 @@ public class DataManager : Singleton<DataManager>
     public IEnumerator LoadData()
     {
 
-
+        string json = File.ReadAllText(this.DataPath + "EnemyDefine.txt");
+        this.Enemies = JsonConvert.DeserializeObject<Dictionary<int, EnemyDefine>>(json);
         yield return null;
 
     }

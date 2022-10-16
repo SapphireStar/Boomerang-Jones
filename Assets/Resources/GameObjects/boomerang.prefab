@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &799106159759524104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8993965772075371246}
+  m_Layer: 0
+  m_Name: RotateCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8993965772075371246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799106159759524104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2287911531302293863}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2287911529744817940
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2287911529744817946}
   - component: {fileID: 2287911529744817947}
-  - component: {fileID: 2162323612298396302}
+  - component: {fileID: 5055197648257354371}
   m_Layer: 0
   m_Name: New Sprite (1)
   m_TagString: Untagged
@@ -82,7 +112,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2162323612298396302
+--- !u!61 &5055197648257354371
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2287911529958157305}
   - component: {fileID: 2287911529958157306}
-  - component: {fileID: 4340495843883978951}
+  - component: {fileID: 7780801391425572477}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -190,7 +220,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4340495843883978951
+--- !u!61 &7780801391425572477
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,7 +258,6 @@ GameObject:
   - component: {fileID: 2287911531302293862}
   - component: {fileID: 2104549579948708268}
   - component: {fileID: 4958859001021014037}
-  - component: {fileID: 6081960625232776132}
   m_Layer: 0
   m_Name: boomerang
   m_TagString: Untagged
@@ -244,11 +273,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2287911531302293856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.604, y: 0.13, z: -0.792002}
+  m_LocalPosition: {x: -2.604, y: 0.124, z: -0.792002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2287911529958157305}
   - {fileID: 2287911529744817946}
+  - {fileID: 8993965772075371246}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -265,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+  RotateCenter: {fileID: 8993965772075371246}
 --- !u!50 &2104549579948708268
 Rigidbody2D:
   serializedVersion: 4
@@ -297,37 +328,6 @@ PolygonCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.0026843548, y: 0.098153055}
-      - {x: -0.40887457, y: -0.18753561}
-      - {x: -0.31826878, y: -0.31773263}
-      - {x: -0.0026583076, y: -0.10042304}
-      - {x: 0.3274306, y: -0.30978018}
-      - {x: 0.40887475, y: -0.19021964}
---- !u!60 &6081960625232776132
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2287911531302293856}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -11,8 +11,19 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Player.Instance.Character = gameObject;
+
+        EventManager.Instance.Subscribe("EnemyDefeat", OnGetExp);
     }
 
+    void OnDestroy()
+    {
+        EventManager.Instance.Unsubscribe("EnemyDefeat", OnGetExp);
+    }
+
+    void OnGetExp(object[] param)
+    {
+        GetExp(50);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -54,5 +65,30 @@ public class PlayerController : MonoBehaviour
             go.GetComponent<Boomerang>().Shoot(new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y), Player.Instance.Force, gameObject);
 
         }
+    }
+
+    public void GetExp(float exp)
+    {
+        int curLevel = Player.Instance.Level;
+        float curExp = Player.Instance.Experience;
+        curExp += exp;
+        while (curExp >= Player.Instance.NextLevelExpArray[curLevel])
+        {
+            curExp -= Player.Instance.NextLevelExpArray[curLevel];
+            curLevel++;
+
+            //当玩家到达满级，停止升级
+            if (curLevel == Player.Instance.NextLevelExpArray.Length)
+            {
+                EventManager.Instance.SendEvent("ReachMaxLevel", new object[] { });
+            }
+
+            //播放升级音效
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_Player_LevelUp);
+
+            EventManager.Instance.SendEvent("LevelUp", new object[] { });
+        }
+        Player.Instance.Level = curLevel;
+        Player.Instance.Experience = curExp;
     }
 }
