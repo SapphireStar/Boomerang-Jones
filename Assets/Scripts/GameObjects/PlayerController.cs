@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         if (!Player.Instance.IsDead)
         {
             Shoot();
+            Catch();
         }
         
 
@@ -55,16 +56,51 @@ public class PlayerController : MonoBehaviour
     }
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)&&Player.Instance.Boomerangs.Count<Player.Instance.MaxBoomerang)
         {
+            Debug.Log("Shoot Boomerang");
             Vector3 mouseposition = Input.mousePosition;
             Vector3 position = Camera.main.ScreenToWorldPoint(mouseposition);
             Debug.LogFormat("MousePosition:{0} {1}", position.x, position.y);
             GameObject go = Instantiate(boomerangPrefab);
             go.transform.position = transform.position + (position - transform.position).normalized;
             go.GetComponent<Boomerang>().Shoot(new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y), Player.Instance.Force, gameObject);
-
+            //玩家丢出回旋镖后，将其加入玩家的回旋镖列表中，用于收回和限制回旋镖最大数量
+            Player.Instance.Boomerangs.Add(go.GetComponent<Boomerang>());
         }
+    }
+
+    private void Catch()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 mouseposition = Input.mousePosition;
+            Vector3 position = Camera.main.ScreenToWorldPoint(mouseposition);
+            position.z = 0;
+            Vector2 direction = (position - transform.position).normalized;
+            for( int i = 0; i < Player.Instance.Boomerangs.Count; i++)
+            {
+                if (Vector2.Distance(Player.Instance.Boomerangs[i].transform.position, transform.position) > Player.Instance.CatchDistance) continue;
+                //这里必须对Vector2的dir进行归一化，否则vector3的z分量会让计算结果错误
+                Vector2 dir = Player.Instance.Boomerangs[i].transform.position - transform.position;
+                Vector2 boomDir = dir.normalized;
+                Debug.LogFormat("Boomerang Dir: {0},{1}", boomDir.x, boomDir.y);
+                float num1 = direction.x * boomDir.x + direction.y * boomDir.y;
+                float cos = num1 / 1.0f;
+                float angle = Mathf.Acos(cos) * (180 / Mathf.PI);
+                Debug.LogFormat("Calculate catch angle:{0}", angle);
+                //如果能够接到回旋镖，将其销毁，并从玩家的回旋镖列表中移出
+                if (angle <= Player.Instance.CatchAngle / 2)
+                {
+                    Boomerang remove = Player.Instance.Boomerangs[i];
+                    Player.Instance.Boomerangs.Remove(remove);
+                    Destroy(remove.gameObject);
+                    SoundManager.Instance.PlaySound(SoundDefine.SFX_Message_Error);
+                    i--;
+                }
+            }
+        }
+
     }
 
     public void GetExp(float exp)

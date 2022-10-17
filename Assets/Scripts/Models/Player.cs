@@ -69,6 +69,38 @@ public class Player : Singleton<Player>
             EventManager.Instance.SendEvent("SetHealth", new object[] { Health });
         }
     }
+    private float catchDistance;
+    public float CatchDistance
+    {
+        get { return catchDistance; }
+        set
+        {
+            catchDistance = value;
+        }
+    }
+
+    private float catchAngle;
+    public float CatchAngle
+    {
+        get { return catchAngle; }
+        set
+        {
+            catchAngle = value;
+        }
+    }
+
+    private int maxBoomerang;
+    public int MaxBoomerang
+    {
+        get { return maxBoomerang; }
+        set
+        {
+            maxBoomerang = value;
+        }
+    }
+
+    public List<Boomerang> Boomerangs = new List<Boomerang>();
+
 
     private bool isDead;
     public bool IsDead
@@ -99,9 +131,12 @@ public class Player : Singleton<Player>
     {
         Force = 3;
         Speed = 5;
-        Health = 100;
-        MaxHealth = 100;
+        Health = 99999;
+        MaxHealth = 99999;
         Attack = 50;
+        CatchDistance = 3f;
+        MaxBoomerang = 3;
+        CatchAngle = 90;
 
         Experience = 0;
         Level = 1;
@@ -121,7 +156,11 @@ public class Player : Singleton<Player>
         Health = 100;
         MaxHealth = 100;
         Attack = 50;
+        CatchDistance = 3f;
+        CatchAngle = 90;
+        MaxBoomerang = 3;
         IsDead = false;
+        Boomerangs.Clear();
 
         Experience = 0;
         Level = 1;

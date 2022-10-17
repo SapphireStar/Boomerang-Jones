@@ -76,11 +76,17 @@ public class Boomerang : MonoBehaviour
         {
             duration -= Time.deltaTime;
         }
+        else
+        {
+            float massCenterBoomerangDistance = Vector3.Distance(massCenter, this.transform.position);
+            rigidbody.AddForce((massCenter - new Vector2(this.transform.position.x, this.transform.position.y)
+                            ).normalized * 25 * force / massCenterBoomerangDistance);
+        }
 
-        float massCenterBoomerangDistance = Vector3.Distance(massCenter, this.transform.position);
-        rigidbody.AddForce((massCenter - new Vector2(this.transform.position.x, this.transform.position.y)
-                        ).normalized * 25 * force / massCenterBoomerangDistance);
-        
+
+       
+
+
 
     }
     private void Rotate()
