@@ -131,8 +131,8 @@ public class Player : Singleton<Player>
     {
         Force = 3;
         Speed = 5;
-        Health = 99999;
-        MaxHealth = 99999;
+        Health = 100;
+        MaxHealth = 100;
         Attack = 50;
         CatchDistance = 3f;
         MaxBoomerang = 3;
