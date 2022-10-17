@@ -10,6 +10,7 @@ public class UIMainBattle : MonoBehaviour
 
     public Slider ExpBar;
     public Text Level;
+    public List<Text> BoomerangCDs;
 
 
     // Start is called before the first frame update
@@ -18,12 +19,14 @@ public class UIMainBattle : MonoBehaviour
         EventManager.Instance.Subscribe("SetKillCount", UpdateKillCount);
         EventManager.Instance.Subscribe("SetHealth", UpdateHealthBar);
         EventManager.Instance.Subscribe("UpdateExperience", UpdateExpBar);
+
+        BoomerangCDs.AddRange(transform.Find("BoomerangCD").GetComponentsInChildren<Text>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateBoomerangCD();
     }
 
     public void OnDestroy()
@@ -53,5 +56,17 @@ public class UIMainBattle : MonoBehaviour
             ExpBar.value = (float)param[1] / Player.Instance.NextLevelExpArray[Player.Instance.Level];
         }
 
+    }
+
+    public void UpdateBoomerangCD()
+    {
+        for(int i = 0; i < BoomerangCDs.Count; i++)
+        {
+            if (i > Player.Instance.Boomerangs.Count - 1) BoomerangCDs[i].text = "✔";
+            else
+            {
+                BoomerangCDs[i].text = Player.Instance.Boomerangs[i].LifeCycle.ToString();
+            }
+        }
     }
 }

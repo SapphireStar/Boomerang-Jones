@@ -62,6 +62,9 @@
     <Compile Include="Assets\Hero Knight - Pixel Art\Demo\Sensor_HeroKnight.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\Common\EnemyDefine.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangEntryState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangGroundedState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangReturnState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\ComboCharacter.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\GroundComboState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\GroundEntryState.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Assets\Scripts\GameObjects\Boomerang.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DrawHalfCircle.cs" />
     <Compile Include="Assets\Scripts\GameObjects\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Exp.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PlayerController.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />

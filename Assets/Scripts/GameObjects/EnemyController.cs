@@ -53,10 +53,11 @@ public class EnemyController : MonoBehaviour
     public void GenExp()
     {
         Vector3 pos = transform.position;
-        Instantiate(ExpPrefeb, pos, Quaternion.identity);
+        GameObject go = Instantiate(ExpPrefeb, pos, Quaternion.identity);
+        go.GetComponent<Exp>().SetExp(DataManager.Instance.Enemies[EnemyType].Exp);
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Boomerang>() != null)
         {

@@ -7,7 +7,8 @@ public class Boomerang : MonoBehaviour
 {
     public float rotationSpeed = 5;
     public Transform RotateCenter;
-    
+    public float LifeCycle = 3;
+    public float ReturnCycle = 3;
     
 
     private Vector2 direction;
@@ -18,34 +19,46 @@ public class Boomerang : MonoBehaviour
     private GameObject owner;
     private float maxSpeed;
 
-    private Vector3 rotateCenter;
-    private Vector2 massCenter;
 
     private Rigidbody2D rigidbody;
+    private StateMachine stateMachine;
     
     // Start is called before the first frame update
     public void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        stateMachine = GetComponent<StateMachine>();
     }
     void Start()
     {
-        rotateCenter = ( Player.Instance.Character.transform.position + new Vector3(-direction.y, direction.x, 0)*2) ;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //Rotate();
+        Return();
+        //回旋镖落地则停止转动
+        if(ReturnCycle>0)
+            Rotate();
         
     }
 
     private void FixedUpdate()
     {
         if (atkDuration > 0) atkDuration -= Time.deltaTime;
-        Return();
+
+        //当CD完成，删除对象
+        if (LifeCycle <= 0)
+        {
+            removeThis();
+        }
+    }
+
+    private void removeThis()
+    {
+        Player.Instance.Boomerangs.Remove(this);
+        Destroy(gameObject);
     }
 
     private void Return()
@@ -76,16 +89,6 @@ public class Boomerang : MonoBehaviour
         {
             duration -= Time.deltaTime;
         }
-        else
-        {
-            float massCenterBoomerangDistance = Vector3.Distance(massCenter, this.transform.position);
-            rigidbody.AddForce((massCenter - new Vector2(this.transform.position.x, this.transform.position.y)
-                            ).normalized * 25 * force / massCenterBoomerangDistance);
-        }
-
-
-       
-
 
 
     }
@@ -100,9 +103,8 @@ public class Boomerang : MonoBehaviour
         Debug.LogFormat("Shoot in{0} force:{1}", _direction, _force);
         this.force = _force;
         this.owner = _owner;
-        rigidbody.velocity = direction * 4 * force;
-        massCenter = Quaternion.AngleAxis(30, new Vector3(0, 0, 1))* (new Vector2(Player.Instance.Character.transform.position.x, Player.Instance.Character.transform.position.y));
-
+        rigidbody.velocity = direction * 3 * force;
+        stateMachine.SetNextStateToMain();
 
     }
     public void OnTriggerEnter2D(Collider2D collision)

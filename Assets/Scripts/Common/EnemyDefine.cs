@@ -12,4 +12,6 @@ public class EnemyDefine
 
     public float AtkCD { get; set; }
 
+    public string Path { get; set; }
+    public float Exp { get; set; }
 }

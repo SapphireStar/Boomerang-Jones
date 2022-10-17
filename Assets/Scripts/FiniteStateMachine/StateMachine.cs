@@ -26,6 +26,10 @@ public class StateMachine : MonoBehaviour
             {
                 mainStateType = new SpiderEnemyTraceState();
             }
+            else if(customName == "Boomerang")
+            {
+                mainStateType = new BoomerangEntryState();
+            }
         }
         SetNextStateToMain();
     }

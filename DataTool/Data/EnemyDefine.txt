@@ -6,7 +6,8 @@
     "Attack": 5.0,
     "Health": 50.0,
     "AtkCD": 0.5,
-    "Path": "GameObjects/Enemies/NormalEnemy"
+    "Path": "GameObjects/Enemies/NormalEnemy",
+    "Exp": 50.0
   },
   "2": {
     "ID": 2,
@@ -15,6 +16,7 @@
     "Attack": 5.0,
     "Health": 50.0,
     "AtkCD": 0.5,
-    "Path": "GameObjects/Enemies/SpiderlEnemy"
+    "Path": "GameObjects/Enemies/SpiderlEnemy",
+    "Exp": 75.0
   }
 }

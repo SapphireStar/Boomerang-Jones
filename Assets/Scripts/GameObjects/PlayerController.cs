@@ -12,17 +12,10 @@ public class PlayerController : MonoBehaviour
     {
         Player.Instance.Character = gameObject;
 
-        EventManager.Instance.Subscribe("GainExp", OnGetExp);
     }
 
     void OnDestroy()
     {
-        EventManager.Instance.Unsubscribe("GainExp", OnGetExp);
-    }
-
-    void OnGetExp(object[] param)
-    {
-        GetExp(50);
     }
     // Update is called once per frame
     void Update()
@@ -80,7 +73,8 @@ public class PlayerController : MonoBehaviour
             Vector2 direction = (position - transform.position).normalized;
             for( int i = 0; i < Player.Instance.Boomerangs.Count; i++)
             {
-                if (Vector2.Distance(Player.Instance.Boomerangs[i].transform.position, transform.position) > Player.Instance.CatchDistance) continue;
+                //判断回旋镖距离和是否处在插在地上的状态
+                if (Vector2.Distance(Player.Instance.Boomerangs[i].transform.position, transform.position) > Player.Instance.CatchDistance|| Player.Instance.Boomerangs[i].ReturnCycle<=0) continue;
                 //这里必须对Vector2的dir进行归一化，否则vector3的z分量会让计算结果错误
                 Vector2 dir = Player.Instance.Boomerangs[i].transform.position - transform.position;
                 Vector2 boomDir = dir.normalized;
@@ -131,7 +125,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "Exp")
         {
-            EventManager.Instance.SendEvent("GainExp");
+            GetExp(collision.GetComponent<Exp>().exp);
+
             Destroy(collision.gameObject);
         }
     }
