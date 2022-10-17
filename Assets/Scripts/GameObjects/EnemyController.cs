@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int EnemyType;
+    public GameObject ExpPrefeb;
     StateMachine stateMachine;
 
 
@@ -25,6 +26,8 @@ public class EnemyController : MonoBehaviour
         atkCD = DataManager.Instance.Enemies[EnemyType].AtkCD;
         stateMachine = GetComponent<StateMachine>();
         stateMachine.SetNextStateToMain();
+        ExpPrefeb = Resloader.Load<GameObject>("GameObjects/Exp");
+
     }
 
     // Update is called once per frame
@@ -46,18 +49,25 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // generate Exp
+    public void GenExp()
+    {
+        Vector3 pos = transform.position;
+        Instantiate(ExpPrefeb, pos, Quaternion.identity);
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.GetComponent<Boomerang>() != null)
         {
             Player.Instance.KillCount++;
+            GenExp();
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
-            EventManager.Instance.SendEvent("EnemyDefeat");
             Destroy(gameObject);
         }
-        if(collision.gameObject == Player.Instance.Character)
+        if (collision.gameObject == Player.Instance.Character)
         {
-            Debug.LogFormat("Type of Enemy is:{0}",DataManager.Instance.Enemies[EnemyType].Name);
+            Debug.LogFormat("Type of Enemy is:{0}", DataManager.Instance.Enemies[EnemyType].Name);
             Attack();
         }
     }
