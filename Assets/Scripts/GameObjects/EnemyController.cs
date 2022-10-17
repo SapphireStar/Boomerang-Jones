@@ -6,7 +6,8 @@ using UnityEngine;
 /// Enemy的属性从DataManager的配置表中获取
 /// </summary>
 public class EnemyController : MonoBehaviour
-{
+{  
+    public GameObject ExpPrefeb;
     public int EnemyType;
     StateMachine stateMachine;
 
@@ -46,13 +47,19 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+// generate Exp
+    public void GenExp(){
+        Vector3 pos = transform.position;
+        Instantiate(ExpPrefeb, pos, Quaternion.identity);
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.GetComponent<Boomerang>() != null)
         {
             Player.Instance.KillCount++;
+            GenExp();
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
-            EventManager.Instance.SendEvent("EnemyDefeat");
             Destroy(gameObject);
         }
         if(collision.gameObject == Player.Instance.Character)

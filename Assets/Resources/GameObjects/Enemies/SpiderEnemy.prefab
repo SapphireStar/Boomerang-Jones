@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac5f863600fa004fb818f33271617b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExpPrefeb: {fileID: 4777376531448423100, guid: 48d5af30ba888e24eb22e07a0a284903,
+    type: 3}
   EnemyType: 2
 --- !u!114 &1142912077443581878
 MonoBehaviour:

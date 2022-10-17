@@ -12,12 +12,12 @@ public class PlayerController : MonoBehaviour
     {
         Player.Instance.Character = gameObject;
 
-        EventManager.Instance.Subscribe("EnemyDefeat", OnGetExp);
+        EventManager.Instance.Subscribe("GainExp", OnGetExp);
     }
 
     void OnDestroy()
     {
-        EventManager.Instance.Unsubscribe("EnemyDefeat", OnGetExp);
+        EventManager.Instance.Unsubscribe("GainExp", OnGetExp);
     }
 
     void OnGetExp(object[] param)
@@ -90,5 +90,13 @@ public class PlayerController : MonoBehaviour
         }
         Player.Instance.Level = curLevel;
         Player.Instance.Experience = curExp;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Exp"){
+            EventManager.Instance.SendEvent("GainExp");
+            Destroy(collision.gameObject);
+        }
     }
 }
