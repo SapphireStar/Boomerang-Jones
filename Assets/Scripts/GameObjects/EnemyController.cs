@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     private float atkCD;
     private float curCD;
     private float atk;
+    private float health;
     // Start is called before the first frame update
     /// <summary>
     /// 设置初始状态，从配置表获取敌人信息,根据敌人类型获取属性
@@ -24,10 +25,12 @@ public class EnemyController : MonoBehaviour
         
         atk = DataManager.Instance.Enemies[EnemyType].Attack;
         atkCD = DataManager.Instance.Enemies[EnemyType].AtkCD;
+        health = DataManager.Instance.Enemies[EnemyType].Hp;
+
         stateMachine = GetComponent<StateMachine>();
         stateMachine.SetNextStateToMain();
         ExpPrefeb = Resloader.Load<GameObject>("GameObjects/Exp");
-
+        
     }
 
     // Update is called once per frame
@@ -59,13 +62,24 @@ public class EnemyController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        //TODO:将敌人的受击和死亡分为两个状态，加入有限状态机中
         if (collision.GetComponent<Boomerang>() != null)
         {
-            Player.Instance.KillCount++;
-            GenExp();
-            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
-            Destroy(gameObject);
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
+            health -= Player.Instance.Attack;
+            if (health <= 0)
+            {
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
+                Player.Instance.KillCount++;
+                GenExp();
+                Destroy(gameObject);
+                
+            }
         }
+
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
         if (collision.gameObject == Player.Instance.Character)
         {
             Debug.LogFormat("Type of Enemy is:{0}", DataManager.Instance.Enemies[EnemyType].Name);

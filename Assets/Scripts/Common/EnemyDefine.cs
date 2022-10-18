@@ -14,4 +14,6 @@ public class EnemyDefine
 
     public string Path { get; set; }
     public float Exp { get; set; }
+
+    public float Hp { get; set; }
 }
