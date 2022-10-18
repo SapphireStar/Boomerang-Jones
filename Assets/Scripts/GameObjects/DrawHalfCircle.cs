@@ -14,6 +14,7 @@ public class DrawHalfCircle : MonoBehaviour
     {
         meshFilter = GetComponent<MeshFilter>();
         meshFilter.mesh = CreateMesh(Radius, innerRadius, angleDegree, Segments);
+       
     }
 
     public void FixedUpdate()
@@ -86,6 +87,7 @@ public class DrawHalfCircle : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uvs;
+        
         return mesh;
     }
 }

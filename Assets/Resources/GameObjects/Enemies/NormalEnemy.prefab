@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 33dccf83b7f7f294992c97ebe1990464, type: 3}
   m_Color: {r: 0.69104946, g: 0.9716981, b: 0.2979263, a: 1}
   m_FlipX: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyType: 1
+  ExpPrefeb: {fileID: 0}
 --- !u!114 &4823026761111234631
 MonoBehaviour:
   m_ObjectHideFlags: 0

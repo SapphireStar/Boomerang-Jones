@@ -21,9 +21,15 @@ public class BoomerangReturnState : State
         {
             stateMachine.GetComponent<Boomerang>().ReturnCycle -= Time.deltaTime;
             base.onFixedUpdate();
-            float massCenterBoomerangDistance = Vector3.Distance(massCenter, stateMachine.transform.position);
-            rigidbody.AddForce((massCenter - new Vector2(stateMachine.transform.position.x, stateMachine.transform.position.y)
-                            ).normalized * 20 * force / massCenterBoomerangDistance);
+            /*            float massCenterBoomerangDistance = Vector3.Distance(massCenter, stateMachine.transform.position);
+                        rigidbody.AddForce((massCenter - new Vector2(stateMachine.transform.position.x, stateMachine.transform.position.y)
+                                        ).normalized * 20 * force / massCenterBoomerangDistance);*/
+            if (Vector3.Distance(rigidbody.position, Player.Instance.Character.transform.position) > 10)
+                rigidbody.velocity = (Player.Instance.Character.transform.position - rigidbody.transform.position).normalized * Player.Instance.BoomerangSpeed;
+            if (rigidbody.velocity.magnitude<Player.Instance.BoomerangSpeed)    
+            rigidbody.AddForce(
+                    (Player.Instance.Character.transform.position-rigidbody.transform.position).normalized
+                    * 8 * force*Mathf.Max(1,1/Vector3.Distance(Player.Instance.Character.transform.position , rigidbody.transform.position)));
         }
         else
         {

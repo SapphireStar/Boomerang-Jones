@@ -7,11 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject boomerangPrefab;
+
+    private float catchCD;
+    private MeshRenderer catchAreaMeshRenderer;
+    private float bonusTime;//抓到回旋镖后的奖励时间
     
     void Start()
     {
         Player.Instance.Character = gameObject;
 
+        catchCD = 0;
+        catchAreaMeshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
     void OnDestroy()
@@ -33,6 +39,8 @@ public class PlayerController : MonoBehaviour
         if (!Player.Instance.IsDead)
         {
             Movement();
+            checkCatchCD();
+            bonusTime -= Time.deltaTime;
         }
         
     }
@@ -57,15 +65,31 @@ public class PlayerController : MonoBehaviour
             Debug.LogFormat("MousePosition:{0} {1}", position.x, position.y);
             GameObject go = Instantiate(boomerangPrefab);
             go.transform.position = transform.position + (position - transform.position).normalized;
-            go.GetComponent<Boomerang>().Shoot(new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y), Player.Instance.Force, gameObject);
+            //若处于接到回旋镖的奖励时间中，得到双倍伤害
+            go.GetComponent<Boomerang>().Shoot(
+                new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y), 
+                Player.Instance.Force, bonusTime>0? Player.Instance.Attack*2: Player.Instance.Attack);
             //玩家丢出回旋镖后，将其加入玩家的回旋镖列表中，用于收回和限制回旋镖最大数量
             Player.Instance.Boomerangs.Add(go.GetComponent<Boomerang>());
+
+            //如果处于双倍伤害，产生屏幕震动
+            if (bonusTime > 0)
+            {
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_bonusBoomerang);
+                EventManager.Instance.SendEvent("ShakeCamera");
+                bonusTime = 0;
+            }
+            else
+            {
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_normalBoomerang);
+            }
         }
     }
 
     private void Catch()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //若catchCD完成，则允许抓取回旋镖
+        if (Input.GetKeyDown(KeyCode.Space)&&catchCD<=0)
         {
             Vector3 mouseposition = Input.mousePosition;
             Vector3 position = Camera.main.ScreenToWorldPoint(mouseposition);
@@ -91,10 +115,28 @@ public class PlayerController : MonoBehaviour
                     Destroy(remove.gameObject);
                     SoundManager.Instance.PlaySound(SoundDefine.SFX_Message_Error);
                     i--;
+                    //重置接回旋镖的CD
+                    //增加bonusTime
+                    catchCD = Player.Instance.CatchCD;
+                    bonusTime = Player.Instance.BonusTime;
+                    EventManager.Instance.SendEvent("ShakeCamera");
                 }
             }
         }
 
+    }
+
+    void checkCatchCD()
+    {
+        if (catchCD < 0)
+        {
+            catchAreaMeshRenderer.material.SetColor("_Color", new Color(0, 1, 0, 0.4f));
+        }
+        else
+        {
+            catchCD -= Time.deltaTime;
+            catchAreaMeshRenderer.material.SetColor("_Color", new Color(1, 0, 0, 0.4f));
+        }
     }
 
     public void GetExp(float exp)

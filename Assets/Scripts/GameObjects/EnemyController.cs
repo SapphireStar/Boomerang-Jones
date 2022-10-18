@@ -30,7 +30,6 @@ public class EnemyController : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
         stateMachine.SetNextStateToMain();
         ExpPrefeb = Resloader.Load<GameObject>("GameObjects/Exp");
-        
     }
 
     // Update is called once per frame
@@ -66,14 +65,19 @@ public class EnemyController : MonoBehaviour
         if (collision.GetComponent<Boomerang>() != null)
         {
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
-            health -= Player.Instance.Attack;
+            health -= collision.GetComponent<Boomerang>().Attack;
+            //告诉相机控制器，敌人被击中
+            EventManager.Instance.SendEvent("EnemyAttacked");
+            //显示伤害UI
+            DamageUIManager.Instance.ShowDamageUI(transform.position,(int) collision.GetComponent<Boomerang>().Attack);
+
             if (health <= 0)
             {
                 SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
                 Player.Instance.KillCount++;
                 GenExp();
-                Destroy(gameObject);
                 
+                Destroy(gameObject);
             }
         }
 

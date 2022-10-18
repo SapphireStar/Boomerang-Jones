@@ -79,6 +79,8 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\State.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Boomerang.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\CameraController.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\DamageUI.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DrawHalfCircle.cs" />
     <Compile Include="Assets\Scripts\GameObjects\EnemyController.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Exp.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\DamageUIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EventManager.cs" />

@@ -33,6 +33,16 @@ public class Player : Singleton<Player>
     private float force;
     public float Force { get { return force; } set { force = value; } }
 
+    private float boomerangSpeed;
+    public float BoomerangSpeed
+    {
+        get { return boomerangSpeed; }
+        set
+        {
+            boomerangSpeed = value;
+        }
+    }
+
     private float speed;
     public float Speed { get { return speed; } set { speed = value; } }
 
@@ -89,6 +99,17 @@ public class Player : Singleton<Player>
         }
     }
 
+    private float catchCD;
+    public float CatchCD
+    {
+        get { return catchCD; }
+        set 
+        { 
+            catchCD = value;
+
+        }
+    }
+
     private int maxBoomerang;
     public int MaxBoomerang
     {
@@ -97,6 +118,13 @@ public class Player : Singleton<Player>
         {
             maxBoomerang = value;
         }
+    }
+
+    private float bonusTime;
+    public float BonusTime
+    {
+        get { return bonusTime; }
+        set { bonusTime = value; }
     }
 
     public List<Boomerang> Boomerangs = new List<Boomerang>();
@@ -137,6 +165,9 @@ public class Player : Singleton<Player>
         CatchDistance = 3f;
         MaxBoomerang = 3;
         CatchAngle = 90;
+        BoomerangSpeed = 10;
+        CatchCD = 3;
+        BonusTime = 2;
 
         Experience = 0;
         Level = 1;
@@ -159,6 +190,9 @@ public class Player : Singleton<Player>
         CatchDistance = 3f;
         CatchAngle = 90;
         MaxBoomerang = 3;
+        BoomerangSpeed = 10;
+        CatchCD = 3;
+        BonusTime = 2;
         IsDead = false;
         Boomerangs.Clear();
 

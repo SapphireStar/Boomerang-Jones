@@ -9,15 +9,13 @@ public class Boomerang : MonoBehaviour
     public Transform RotateCenter;
     public float LifeCycle = 3;
     public float ReturnCycle = 3;
-    
-
-    private Vector2 direction;
+    public float Attack;
+   
+    public Vector2 direction;
     private float duration = 0.2f;
     private float atkDuration = 0.1f;
-    private float currentRotate = 0;
     private float force;
-    private GameObject owner;
-    private float maxSpeed;
+
 
 
     private Rigidbody2D rigidbody;
@@ -97,12 +95,12 @@ public class Boomerang : MonoBehaviour
         this.transform.RotateAround(RotateCenter.position,new Vector3(0,0,1),rotationSpeed * Time.deltaTime * 150);
 
     }
-    public void Shoot(Vector2 _direction,float _force,GameObject _owner)
+    public void Shoot(Vector2 _direction,float _force,float attack)
     {
         direction = new Vector2(_direction.x,_direction.y).normalized;
         Debug.LogFormat("Shoot in{0} force:{1}", _direction, _force);
         this.force = _force;
-        this.owner = _owner;
+        Attack = attack;
         rigidbody.velocity = direction * 3 * force;
         stateMachine.SetNextStateToMain();
 
@@ -113,7 +111,7 @@ public class Boomerang : MonoBehaviour
         {
             Player.Instance.GetAttacked(Player.Instance.Attack);
             atkDuration = 0.1f;
-
+            EventManager.Instance.SendEvent("ShakeCamera");
         }
     }
 
