@@ -31,7 +31,7 @@ public class StateMachine : MonoBehaviour
                 mainStateType = new BoomerangEntryState();
             }
         }
-        SetNextStateToMain();
+        //SetNextStateToMain();
     }
 
     private void Update()

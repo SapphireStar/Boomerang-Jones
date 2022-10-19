@@ -22,6 +22,7 @@ namespace Assets.Scripts.Managers
         {
             this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resource = "UI/UISystemConfig", Cache = true });
             this.UIResources.Add(typeof(UIGameOver), new UIElement() { Resource = "UI/UIGameOver", Cache = true });
+            this.UIResources.Add(typeof(UIWaveEnd), new UIElement() { Resource = "UI/UIWaveEnd", Cache = true });
         }
         ~UIManager()
         {

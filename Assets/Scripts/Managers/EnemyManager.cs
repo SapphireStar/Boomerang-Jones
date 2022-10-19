@@ -35,36 +35,30 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     }
     public void FixedUpdate()
     {
-        Spawn();
+
     }
 
-    private void Spawn()
+    public void Spawn(float rate,Vector3 pos)
     {
-        if (startSpawn)
+        if (DataManager.Instance.Waves[Game.Instance.Wave].SpiderEnemyRate>=rate)
         {
-            if (spawnDuration > 0)
-                spawnDuration -= Time.deltaTime;
-            else
-            {
-                float random = Random.Range(0, 1.0f);
-                if (random > 0.2f)
-                    SpawnNormalEnemy();
-                else SpawnSpiderEnemy();
-                spawnDuration = Game.Instance.SpawnDuration;
-            }
+            SpawnSpiderEnemy(pos);
+            
+        }
+        else
+        {
+            SpawnNormalEnemy(pos);
         }
     }
-    public void SpawnNormalEnemy()
+    public void SpawnNormalEnemy(Vector3 pos)
     {
-        if(playerPos==null) playerPos = Player.Instance.Character.transform.position;
         GameObject go = Instantiate(NormalEnemyPrefab);
-        go.transform.position = new Vector3(Random.Range(spawnRange.x, spawnRange.y), Random.Range(spawnRange.x, spawnRange.y), 0);
+        go.transform.position = pos;
     }
 
-    public void SpawnSpiderEnemy()
+    public void SpawnSpiderEnemy(Vector3 pos)
     {
-        if (playerPos == null) playerPos = Player.Instance.Character.transform.position;
         GameObject go = Instantiate(SpiderEnemyPrefab);
-        go.transform.position = new Vector3(Random.Range(spawnRange.x, spawnRange.y), Random.Range(spawnRange.x, spawnRange.y), 0);
+        go.transform.position = pos;
     }
 }

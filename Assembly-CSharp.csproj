@@ -62,6 +62,7 @@
     <Compile Include="Assets\Hero Knight - Pixel Art\Demo\Sensor_HeroKnight.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\Common\EnemyDefine.cs" />
+    <Compile Include="Assets\Scripts\Common\WaveDefine.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangEntryState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangGroundedState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\BoomerangStateMachine\BoomerangReturnState.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeBaseState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeEntryState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeStateMachine.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyEntryState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyIdleState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyTraceState.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Models\Game.cs" />
     <Compile Include="Assets\Scripts\Models\Player.cs" />
@@ -103,11 +106,13 @@
     <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabButton.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabView.cs" />
+    <Compile Include="Assets\Scripts\UI\UIButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\UI\UIMainBattle.cs" />
     <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\UISystemConfig.cs" />
+    <Compile Include="Assets\Scripts\UI\UIWaveEnd.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldElement.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldElementManager.cs" />
@@ -118,14 +123,17 @@
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\readme.txt" />
     <None Include="Assets\JsonDotNet\link.xml" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
     <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll" />
     <None Include="Assets\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll" />
     <None Include="Assets\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.XML" />
+    <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\contact.txt" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
     <None Include="Assets\Scripts\References\log4net.xml" />
+    <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\changelog.txt" />
     <None Include="Assets\Scripts\References\log4net.dll" />
     <None Include="Assets\Hero Knight - Pixel Art\ColorSwap\Sprites-ColorSwap.shader" />
   </ItemGroup>

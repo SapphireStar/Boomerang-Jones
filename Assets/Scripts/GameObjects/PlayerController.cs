@@ -7,11 +7,16 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject boomerangPrefab;
+    public GameObject Up;
+    public GameObject Down;
+    public GameObject Right;
+    public GameObject Left;
 
     private float catchCD;
     private MeshRenderer catchAreaMeshRenderer;
     private float bonusTime;//抓到回旋镖后的奖励时间
     
+
     void Start()
     {
         Player.Instance.Character = gameObject;
@@ -42,21 +47,45 @@ public class PlayerController : MonoBehaviour
             checkCatchCD();
             bonusTime -= Time.deltaTime;
         }
-        
+
+    }
+    public bool Raycast(Vector2 pos, Vector2 dir, float dist, string tag, int layermask)
+    {
+        RaycastHit2D raycast = Physics2D.Raycast(pos, dir, dist, layermask);
+        if (raycast.collider != null)
+        {
+            Debug.Log("detect:" + raycast.collider.transform.tag);
+            if (raycast.transform.tag == tag)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
     private void Movement()
     {
-        if (Mathf.Abs(Input.GetAxis("Horizontal"))>0.2)
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(horizontal) >0.2&&
+            ((horizontal > 0 && !Raycast(Right.transform.position, Vector2.right, 0.1f, "Wall", LayerMask.GetMask("Wall")))||
+            (horizontal < 0&& !Raycast(Left.transform.position, Vector2.left, 0.1f, "Wall", LayerMask.GetMask("Wall"))))
+            )
         {
-            transform.position += new Vector3(Input.GetAxis("Horizontal") * Player.Instance.Speed * Time.deltaTime, 0, 0);
+                transform.Translate(new Vector3(horizontal * Player.Instance.Speed * Time.deltaTime, 0, 0));
         }
-        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.2)
+        if (Mathf.Abs(vertical) > 0.2&&
+            ((vertical > 0 && !Raycast(Up.transform.position, Vector2.up, 0.1f, "Wall", LayerMask.GetMask("Wall")))||
+            (vertical < 0&& !Raycast(Down.transform.position, Vector2.down, 0.1f, "Wall", LayerMask.GetMask("Wall"))))
+            )
         {
-            transform.position += new Vector3(0, Input.GetAxis("Vertical") * Player.Instance.Speed * Time.deltaTime, 0);
+                transform.Translate(new Vector3(0, vertical * Player.Instance.Speed * Time.deltaTime, 0));
         }
     }
     private void Shoot()
     {
+        if (Game.Instance.IsPause) return;
         if (Input.GetKeyDown(KeyCode.Mouse0)&&Player.Instance.Boomerangs.Count<Player.Instance.MaxBoomerang)
         {
             Debug.Log("Shoot Boomerang");
@@ -88,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
     private void Catch()
     {
+        if (Game.Instance.IsPause) return;
         //若catchCD完成，则允许抓取回旋镖
         if (Input.GetKeyDown(KeyCode.Space)&&catchCD<=0)
         {
@@ -163,6 +193,8 @@ public class PlayerController : MonoBehaviour
         Player.Instance.Level = curLevel;
         Player.Instance.Experience = curExp;
     }
+
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Exp")

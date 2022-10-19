@@ -10,14 +10,39 @@ public class Game : Singleton<Game>
     private float spawnDuration;
     public float SpawnDuration { get { return spawnDuration; } set { spawnDuration = value; } }
 
+    private int wave;
+    public int Wave
+    {
+        get { return wave; }
+        set
+        {
+            wave = value;
+        }
+    }
+    private bool isPause;
+    public bool IsPause { 
+        get { return isPause; }
+        set
+        {
+            isPause = value;
+        }
+    }
     public Game()
     {
         Difficulty = 1;
         SpawnDuration = 1.5f;
+        Wave = 1;
+
+        EventManager.Instance.Subscribe("RestartGame", Reset);
     }
-    public void Reset()
+    ~Game()
+    {
+        EventManager.Instance.Unsubscribe("RestartGame", Reset);
+    }
+    public void Reset(object[] param)
     {
         Difficulty = 1;
         SpawnDuration = 1.5f;
+        Wave = 1;
     }
 }

@@ -1,0 +1,42 @@
+{
+  "1": {
+    "ID": 1,
+    "EnemyCount": 10,
+    "SubWaveCount": 3,
+    "Difficulty": 1.0,
+    "NormalEnemyRate": 1.0,
+    "SpiderEnemyRate": 0.0
+  },
+  "2": {
+    "ID": 2,
+    "EnemyCount": 10,
+    "SubWaveCount": 3,
+    "Difficulty": 1.0,
+    "NormalEnemyRate": 0.7,
+    "SpiderEnemyRate": 0.3
+  },
+  "3": {
+    "ID": 3,
+    "EnemyCount": 15,
+    "SubWaveCount": 3,
+    "Difficulty": 1.0,
+    "NormalEnemyRate": 0.7,
+    "SpiderEnemyRate": 0.3
+  },
+  "4": {
+    "ID": 4,
+    "EnemyCount": 15,
+    "SubWaveCount": 3,
+    "Difficulty": 1.0,
+    "NormalEnemyRate": 0.5,
+    "SpiderEnemyRate": 0.5
+  },
+  "5": {
+    "ID": 5,
+    "EnemyCount": 20,
+    "SubWaveCount": 3,
+    "Difficulty": 1.0,
+    "NormalEnemyRate": 0.5,
+    "SpiderEnemyRate": 0.5
+  }
+}

@@ -11,4 +11,6 @@ class GameUtil : Singleton<GameUtil>
     {
         return Screen.safeArea.Contains(Camera.main.WorldToScreenPoint(position));
     }
+
+
 }

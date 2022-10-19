@@ -27,8 +27,7 @@ public class EnemyController : MonoBehaviour
         atkCD = DataManager.Instance.Enemies[EnemyType].AtkCD;
         health = DataManager.Instance.Enemies[EnemyType].Hp;
 
-        stateMachine = GetComponent<StateMachine>();
-        stateMachine.SetNextStateToMain();
+
         ExpPrefeb = Resloader.Load<GameObject>("GameObjects/Exp");
     }
 
@@ -81,6 +80,13 @@ public class EnemyController : MonoBehaviour
             }
         }
 
+    }
+
+    public void OnEntryAnimationFinish()
+    {
+        stateMachine = GetComponent<StateMachine>();
+        stateMachine.SetNextStateToMain();
+        GetComponent<SpriteRenderer>().enabled = true;
     }
     void OnTriggerStay2D(Collider2D collision)
     {

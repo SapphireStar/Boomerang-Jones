@@ -12,6 +12,7 @@ public class DataManager : Singleton<DataManager>
 {
     public string DataPath;
     public Dictionary<int, EnemyDefine> Enemies;
+    public Dictionary<int, WaveDefine> Waves;
 
 
     public DataManager()
@@ -33,6 +34,10 @@ public class DataManager : Singleton<DataManager>
 
         string json = File.ReadAllText(this.DataPath + "EnemyDefine.txt");
         this.Enemies = JsonConvert.DeserializeObject<Dictionary<int, EnemyDefine>>(json);
+        yield return null;
+
+        json = File.ReadAllText(this.DataPath + "WaveDefine.txt");
+        this.Waves = JsonConvert.DeserializeObject<Dictionary<int, WaveDefine>>(json);
         yield return null;
 
     }
