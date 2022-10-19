@@ -35,7 +35,17 @@ public class UIMainMenu : MonoBehaviour
     {
         Log.InfoFormat("EnterBattleScene");
         SceneManager.Instance.LoadScene("BattleScene");
+
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
     }
 
+    public void OnClickExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+Application.Quit();
+#endif
+        
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,18 @@ public class UIMainBattle : MonoBehaviour
     void Update()
     {
         UpdateBoomerangCD();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.timeScale != 0)
+            {
+                UIManager.Instance.Show<UISystemConfig>();
+                GameManager.Instance.PauseGame();
+            }
+            else
+            {
+                GameManager.Instance.ResumeGame();
+            }
+        }
     }
 
     public void OnDestroy()

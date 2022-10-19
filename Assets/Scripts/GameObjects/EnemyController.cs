@@ -91,6 +91,7 @@ public class EnemyController : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collision)
     {
+        if (stateMachine.CurrentState == null) return;
         if (collision.gameObject == Player.Instance.Character)
         {
             Debug.LogFormat("Type of Enemy is:{0}", DataManager.Instance.Enemies[EnemyType].Name);

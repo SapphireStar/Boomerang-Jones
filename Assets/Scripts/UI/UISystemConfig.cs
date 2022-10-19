@@ -22,9 +22,14 @@ public class UISystemConfig : UIWindow
         this.sliderSound.value = Config.SoundVolume;
         
     }
-
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            OnYesClick();
+    }
     public override void OnYesClick()
     {
+        GameManager.Instance.ResumeGame();
         SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         PlayerPrefs.Save();
         base.OnYesClick();
@@ -64,5 +69,12 @@ public class UISystemConfig : UIWindow
             lastplay = Time.realtimeSinceStartup;
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         }
+    }
+
+    public void OnBackToMainClick()
+    {
+        GameManager.Instance.ResumeGame();
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
+        SceneManager.Instance.LoadScene("SampleScene");
     }
 }
