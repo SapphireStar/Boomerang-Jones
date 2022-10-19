@@ -7,6 +7,7 @@ public class UIWaveEnd : UIWindow
 {
     public Button NextWave;
     public List<UpgradeItem> UpgradeItems;
+    public Text RemainPerk;
 
     public void Start()
     {
@@ -23,8 +24,10 @@ public class UIWaveEnd : UIWindow
     }
     public void UpdateUpgradeItem(object[] param)
     {
+        RemainPerk.text = string.Format("剩余{0}技能点", Player.Instance.UpgradePerk.ToString());
         if (Player.Instance.UpgradePerk > 0)
         {
+            Debug.Log("Update Upgrade Item");
             UpgradeItems[0].Init(DataManager.Instance.Upgrades[1]);
             UpgradeItems[1].Init(DataManager.Instance.Upgrades[2]);
             UpgradeItems[2].Init(DataManager.Instance.Upgrades[3]);

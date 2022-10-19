@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (stateMachine.CurrentState == null) return;
         //TODO:将敌人的受击和死亡分为两个状态，加入有限状态机中
         if (collision.GetComponent<Boomerang>() != null)
         {

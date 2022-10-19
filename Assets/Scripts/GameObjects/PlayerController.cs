@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         {
             curExp -= Player.Instance.NextLevelExpArray[curLevel];
             curLevel++;
-            Player.Instance.UpgradePerk++;//升级的时候增加perk
+            Player.Instance.UpgradePerk+=1;//升级的时候增加perk
 
             //当玩家到达满级，停止升级
             if (curLevel == Player.Instance.NextLevelExpArray.Length)

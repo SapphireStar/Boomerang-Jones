@@ -14,7 +14,7 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, EnemyDefine> Enemies;
     public Dictionary<int, WaveDefine> Waves;
     public Dictionary<int, UpgradeDefine> Upgrades;
-    public Dictionary<int, LevelDefine> Levels;//´æ´¢Ã¿¼¶µÄÉý¼¶Ñ¡Ïî
+    public Dictionary<int, LevelDefine> Levels;//ï¿½æ´¢Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½
 
 
     public DataManager()
@@ -46,9 +46,6 @@ public class DataManager : Singleton<DataManager>
         this.Upgrades = JsonConvert.DeserializeObject<Dictionary<int, UpgradeDefine>>(json);
         yield return null;
 
-        json = File.ReadAllText(this.DataPath + "LevelDefine.txt");
-        this.Levels = JsonConvert.DeserializeObject<Dictionary<int, LevelDefine>>(json);
-        yield return null;
 
     }
 

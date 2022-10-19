@@ -41,6 +41,7 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
             Player.Instance.UpgradePerk--;
             //Apply upgrade
+            Debug.Log("You Upgraded!");
         }
 
     }

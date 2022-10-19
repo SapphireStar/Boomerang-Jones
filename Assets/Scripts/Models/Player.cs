@@ -179,6 +179,7 @@ public class Player : Singleton<Player>
         BoomerangSpeed = 10;
         CatchCD = 3;
         BonusTime = 2;
+        UpgradePerk = 0;
 
         Experience = 0;
         Level = 1;
@@ -204,6 +205,7 @@ public class Player : Singleton<Player>
         BoomerangSpeed = 10;
         CatchCD = 3;
         BonusTime = 2;
+        UpgradePerk = 0;
         IsDead = false;
         Boomerangs.Clear();
 

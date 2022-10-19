@@ -65,7 +65,7 @@ public class UIMainBattle : MonoBehaviour
             if (i > Player.Instance.Boomerangs.Count - 1) BoomerangCDs[i].text = "✔";
             else
             {
-                BoomerangCDs[i].text = Player.Instance.Boomerangs[i].LifeCycle.ToString();
+                BoomerangCDs[i].text = ((int)Player.Instance.Boomerangs[i].LifeCycle).ToString();
             }
         }
     }
