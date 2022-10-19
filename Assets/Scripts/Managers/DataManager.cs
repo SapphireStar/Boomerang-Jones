@@ -13,6 +13,8 @@ public class DataManager : Singleton<DataManager>
     public string DataPath;
     public Dictionary<int, EnemyDefine> Enemies;
     public Dictionary<int, WaveDefine> Waves;
+    public Dictionary<int, UpgradeDefine> Upgrades;
+    public Dictionary<int, LevelDefine> Levels;//存储每级的升级选项
 
 
     public DataManager()
@@ -38,6 +40,14 @@ public class DataManager : Singleton<DataManager>
 
         json = File.ReadAllText(this.DataPath + "WaveDefine.txt");
         this.Waves = JsonConvert.DeserializeObject<Dictionary<int, WaveDefine>>(json);
+        yield return null;
+
+        json = File.ReadAllText(this.DataPath + "UpgradeDefine.txt");
+        this.Upgrades = JsonConvert.DeserializeObject<Dictionary<int, UpgradeDefine>>(json);
+        yield return null;
+
+        json = File.ReadAllText(this.DataPath + "LevelDefine.txt");
+        this.Levels = JsonConvert.DeserializeObject<Dictionary<int, LevelDefine>>(json);
         yield return null;
 
     }

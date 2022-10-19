@@ -155,6 +155,17 @@ public class Player : Singleton<Player>
             EventManager.Instance.SendEvent("SetKillCount", new object[] { killCount });
         }
     }
+
+    private int upgradePerk;
+    public int UpgradePerk
+    {
+        get { return upgradePerk; }
+        set
+        {
+            upgradePerk = value;
+            EventManager.Instance.SendEvent("SetUpgradePerk", new object[] { upgradePerk });
+        }
+    }
     public Player()
     {
         Force = 3;

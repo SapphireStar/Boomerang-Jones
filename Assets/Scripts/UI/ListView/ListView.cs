@@ -24,6 +24,7 @@ public class ListView : MonoBehaviour
         }
         public virtual void onSelected(bool selected)
         {
+
         }
 
         public ListView owner;

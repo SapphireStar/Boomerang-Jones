@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Game.Instance.IsPause) return;
         //若catchCD完成，则允许抓取回旋镖
-        if (Input.GetKeyDown(KeyCode.Space)&&catchCD<=0)
+        if (Input.GetKeyDown(KeyCode.Mouse1)&&catchCD<=0)
         {
             Vector3 mouseposition = Input.mousePosition;
             Vector3 position = Camera.main.ScreenToWorldPoint(mouseposition);
@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
         {
             curExp -= Player.Instance.NextLevelExpArray[curLevel];
             curLevel++;
+            Player.Instance.UpgradePerk++;//升级的时候增加perk
 
             //当玩家到达满级，停止升级
             if (curLevel == Player.Instance.NextLevelExpArray.Length)
