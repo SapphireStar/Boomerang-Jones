@@ -6,7 +6,9 @@
     "Type": 1,
     "Health": 0.05,
     "Attack": 0.0,
-    "Speed": 0.0
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0
   },
   "2": {
     "ID": 2,
@@ -15,7 +17,9 @@
     "Type": 2,
     "Health": 0.0,
     "Attack": 0.05,
-    "Speed": 0.0
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0
   },
   "3": {
     "ID": 3,
@@ -24,6 +28,30 @@
     "Type": 3,
     "Health": 0.0,
     "Attack": 0.0,
-    "Speed": 0.05
+    "Speed": 0.05,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0
+  },
+  "4": {
+    "ID": 4,
+    "Name": "Ring of Evil",
+    "Description": "Vamp +5%",
+    "Type": 4,
+    "Health": 0.0,
+    "Attack": 0.0,
+    "Speed": 0.0,
+    "Vampirism": 0.05,
+    "AutoRecover": 0.0
+  },
+  "5": {
+    "ID": 5,
+    "Name": "Sun Princess Ring",
+    "Description": "Recover +1",
+    "Type": 5,
+    "Health": 0.0,
+    "Attack": 0.0,
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 1.0
   }
 }

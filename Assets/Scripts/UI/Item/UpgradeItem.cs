@@ -10,6 +10,7 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
     public float Hp;
     public float Attack;
     public float Vampirism;
+    public float AutoRecover;
 
     public Image Background;
     public Image icon;
@@ -21,6 +22,9 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
         Speed = define.Speed ;
         Hp = define.Health;
         Attack = define.Attack;
+        Vampirism = define.Vampirism;
+        AutoRecover = define.AutoRecove;
+
         Name.text = define.Name;
         Description.text = define.Description;
 
@@ -43,7 +47,11 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
             Player.Instance.UpgradePerk--;
             //Apply upgrade
             Debug.Log("You Upgraded!");
-
+            Player.Instance.Upgrades[Player.Status.Attack] += Attack;
+            Player.Instance.Upgrades[Player.Status.Speed] += Speed;
+            Player.Instance.Upgrades[Player.Status.MaxHealth] += Hp;
+            Player.Instance.Upgrades[Player.Status.Vampirism] += Vampirism;
+            Player.Instance.Upgrades[Player.Status.AutoRecover] += AutoRecover;
         }
 
     }

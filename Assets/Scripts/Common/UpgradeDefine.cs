@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UpgradeType {Survive,Attack,Move }
 public class UpgradeDefine
 {
     public int ID { get; set; }
@@ -12,4 +11,7 @@ public class UpgradeDefine
     public float Health { get; set; }
     public float Attack { get; set; }
     public float Speed { get; set; }
+    public float Vampirism { get; set; }
+    public float AutoRecove { get; set; }
+
 }

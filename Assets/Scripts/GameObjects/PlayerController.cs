@@ -20,14 +20,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Player.Instance.Character = gameObject;
+        EventManager.Instance.Subscribe("EnemyAttacked", Vampirism);
 
         catchCD = 0;
         catchAreaMeshRenderer = GetComponentInChildren<MeshRenderer>();
         animator = GetComponent<Animator>();
+
+        
     }
 
     void OnDestroy()
     {
+        EventManager.Instance.Unsubscribe("EnemyAttacked", Vampirism);
     }
     // Update is called once per frame
     void Update()
@@ -132,6 +136,7 @@ public class PlayerController : MonoBehaviour
         //若catchCD完成，则允许抓取回旋镖
         if (Input.GetKeyDown(KeyCode.Mouse1)&&catchCD<=0)
         {
+            bool caughtAny = false;
             Vector3 mouseposition = Input.mousePosition;
             Vector3 position = Camera.main.ScreenToWorldPoint(mouseposition);
             position.z = 0;
@@ -158,11 +163,12 @@ public class PlayerController : MonoBehaviour
                     i--;
                     //重置接回旋镖的CD
                     //增加bonusTime
-                    catchCD = Player.Instance.CatchCD;
+                    caughtAny = true;
                     bonusTime = Player.Instance.BonusTime;
                     EventManager.Instance.SendEvent("ShakeCamera");
                 }
             }
+            if (!caughtAny) catchCD = Player.Instance.CatchCD;
         }
 
     }
@@ -204,6 +210,16 @@ public class PlayerController : MonoBehaviour
         }
         Player.Instance.Level = curLevel;
         Player.Instance.Experience = curExp;
+    }
+
+    public void Vampirism(object[] param)
+    {
+        Player.Instance.Health += (Player.Instance.Vampirism*Player.Instance.Attack);
+    }
+
+    public void AutoRecover()
+    {
+        Player.Instance.Health += Player.Instance.AutoRecover;
     }
 
 

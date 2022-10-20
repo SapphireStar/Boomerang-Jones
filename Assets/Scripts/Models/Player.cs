@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
+    public enum Status { MaxHealth, Attack,Speed,Vampirism,AutoRecover}
     public GameObject Character;
 
     public float[] NextLevelExpArray = new float[] { 0, 50, 100, 200, 400, 800, 1600, 3200,6400,12800,25600,51200,102400 };
 
     private float experience;
+
+    public Dictionary<Status, float> Upgrades = new Dictionary<Status, float>();
     /// <summary>
     /// 向MainUI发送消息，更新经验条
     /// </summary>
@@ -44,10 +47,30 @@ public class Player : Singleton<Player>
     }
 
     private float speed;
-    public float Speed { get { return speed; } set { speed = value; } }
+    public float Speed 
+    { 
+        get 
+        {
+            float upgrade = 1;
+            Upgrades.TryGetValue(Status.Speed, out upgrade);
+            upgrade = Mathf.Max(upgrade, 1);
+            return speed*upgrade;
+        } 
+        set { speed = value; }
+    }
 
     private float attack;
-    public float Attack { get { return attack; }set { attack = value; } }
+    public float Attack 
+    { 
+        get 
+        {
+            float upgrade = 1;
+            Upgrades.TryGetValue(Status.Attack, out upgrade);
+            upgrade = Mathf.Max(upgrade, 1);
+            return attack*upgrade;
+        }
+        set { attack = value; }
+    }
 
     private float health;
     /// <summary>
@@ -58,7 +81,9 @@ public class Player : Singleton<Player>
         get { return health; }
         set
         {
-            health = value;
+            if (value > MaxHealth)
+                health = MaxHealth;
+            else health = value;
             EventManager.Instance.SendEvent("SetHealth", new object[] { health });
             if (health <= 0)
             {
@@ -72,7 +97,13 @@ public class Player : Singleton<Player>
     /// </summary>
     public float MaxHealth
     {
-        get { return maxHealth; }
+        get 
+        {
+            float upgrade = 1;
+            Upgrades.TryGetValue(Status.MaxHealth, out upgrade);
+            upgrade = Mathf.Max(upgrade, 1);
+            return maxHealth*upgrade;
+        }
         set
         {
             maxHealth = value;
@@ -137,7 +168,7 @@ public class Player : Singleton<Player>
         set
         {
             isDead = value;
-            if(value == true)
+            if(value == true&&Character!=null)
             {
                 Character.GetComponent<Animator>().SetTrigger("Death");
                 EventManager.Instance.SendEvent("GameOver", new object[] { });
@@ -171,7 +202,12 @@ public class Player : Singleton<Player>
     private float autoRecover;
     public float AutoRecover
     {
-        get { return autoRecover; }
+        get 
+        {
+            float upgrade = 0;
+            Upgrades.TryGetValue(Status.AutoRecover, out upgrade);
+            return autoRecover+upgrade; 
+        }
         set
         {
             autoRecover = value;
@@ -181,7 +217,12 @@ public class Player : Singleton<Player>
     private float vampirism;
     public float Vampirism
     {
-        get { return vampirism; }
+        get 
+        {
+            float upgrade = 0;
+            Upgrades.TryGetValue(Status.Vampirism, out upgrade);
+            return vampirism*upgrade;
+        }
         set
         {
             vampirism = value;
@@ -189,10 +230,11 @@ public class Player : Singleton<Player>
     }
     public Player()
     {
-        Force = 3;
-        Speed = 5;
-        Health = 100;
+
         MaxHealth = 100;
+        Force = 3;
+        Speed = 3;
+        Health = 100;
         Attack = 50;
         CatchDistance = 3f;
         MaxBoomerang = 3;
@@ -207,6 +249,9 @@ public class Player : Singleton<Player>
 
         Experience = 0;
         Level = 1;
+
+        
+
         EventManager.Instance.Subscribe("RestartGame", Reset);
     }
     ~Player()
@@ -217,11 +262,12 @@ public class Player : Singleton<Player>
     //在游戏重新开始时需要重设的值
     public void Reset(object[] param)
     {
+
+        MaxHealth = 100;
         Force = 3;
-        Speed = 5;
+        Speed = 3;
         KillCount = 0;
         Health = 100;
-        MaxHealth = 100;
         Attack = 50;
         CatchDistance = 3f;
         CatchAngle = 90;
@@ -238,6 +284,8 @@ public class Player : Singleton<Player>
 
         Experience = 0;
         Level = 1;
+
+        Upgrades.Clear();
     }
 
     public void GetAttacked(float atk)

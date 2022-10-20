@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
         
         atk = DataManager.Instance.Enemies[EnemyType].Attack;
         atkCD = DataManager.Instance.Enemies[EnemyType].AtkCD;
-        health = DataManager.Instance.Enemies[EnemyType].Hp;
+        health = DataManager.Instance.Enemies[EnemyType].Hp*DataManager.Instance.Waves[Game.Instance.Wave].Difficulty;
 
         animator = GetComponent<Animator>();
 
