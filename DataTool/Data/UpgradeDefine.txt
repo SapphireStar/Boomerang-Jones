@@ -1,8 +1,8 @@
 {
   "1": {
     "ID": 1,
-    "Name": "微小生命戒指",
-    "Description": "生命上限 +5%",
+    "Name": "Tiny Being'S Ring",
+    "Description": "Max Hp +5%",
     "Type": 1,
     "Health": 0.05,
     "Attack": 0.0,
@@ -10,8 +10,8 @@
   },
   "2": {
     "ID": 2,
-    "Name": "狮子戒指",
-    "Description": "攻击力 +5%",
+    "Name": "Lion's Ring",
+    "Description": "atk +5%",
     "Type": 2,
     "Health": 0.0,
     "Attack": 0.05,
@@ -19,8 +19,8 @@
   },
   "3": {
     "ID": 3,
-    "Name": "银猫戒指",
-    "Description": "速度 +5%",
+    "Name": "Silvercat Ring",
+    "Description": "SPD +5%",
     "Type": 3,
     "Health": 0.0,
     "Attack": 0.0,

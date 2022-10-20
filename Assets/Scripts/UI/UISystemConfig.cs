@@ -76,7 +76,8 @@ public class UISystemConfig : UIWindow
 
     public void OnBackToMainClick()
     {
-        GameManager.Instance.ResumeGame();
+        if(GameManager.Instance!=null)
+            GameManager.Instance.ResumeGame();
         SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         SceneManager.Instance.LoadScene("SampleScene");
     }

@@ -23,7 +23,9 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
         Attack = define.Attack;
         Name.text = define.Name;
         Description.text = define.Description;
-        
+
+        Background.color = new Color(123f / 255f, 1, 112f / 255f, 183f / 255f);
+        icon.color = new Color(236f / 236f, 236f / 236f, 236f / 255f, 1);
     }
     public void Unenable()
     {
@@ -31,11 +33,7 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
     }
     public void Enable()
     {
-        if (Player.Instance.UpgradePerk > 0)
-        {
-            Background.color = new Color(123f / 255f, 1, 112f / 255f, 183f / 255f);
-            icon.color = new Color(236f / 236f, 236f / 236f, 236f / 255f, 1);
-        }
+
     }
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -22,9 +22,10 @@ public class UIWaveEnd : UIWindow
     {
         UpdateUpgradeItem(null);
     }
+
     public void UpdateUpgradeItem(object[] param)
     {
-        RemainPerk.text = string.Format("剩余{0}技能点", Player.Instance.UpgradePerk.ToString());
+        RemainPerk.text = string.Format("Remain {0} Perk", Player.Instance.UpgradePerk.ToString());
         if (Player.Instance.UpgradePerk > 0)
         {
             Debug.Log("Update Upgrade Item");

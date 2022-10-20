@@ -25,7 +25,8 @@ public class UIWindow : MonoBehaviour
 
     public void Close(WindowResult result = WindowResult.None)
     {
-        GameManager.Instance.ResumeGame();
+        if(GameManager.Instance!=null)
+            GameManager.Instance.ResumeGame();
         //SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
         UIManager.Instance.Close(this.Type);
         if (this.OnClose != null)
