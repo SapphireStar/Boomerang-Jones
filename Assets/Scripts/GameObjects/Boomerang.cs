@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Utilities;
 using UnityEngine;
 
 public class Boomerang : MonoBehaviour

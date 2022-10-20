@@ -15,11 +15,14 @@ public class UIMainBattle : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         EventManager.Instance.Subscribe("SetKillCount", UpdateKillCount);
+        yield return null;
         EventManager.Instance.Subscribe("SetHealth", UpdateHealthBar);
+        yield return null;
         EventManager.Instance.Subscribe("UpdateExperience", UpdateExpBar);
+        yield return null;
 
         BoomerangCDs.AddRange(transform.Find("BoomerangCD").GetComponentsInChildren<Text>());
     }
@@ -35,10 +38,7 @@ public class UIMainBattle : MonoBehaviour
                 UIManager.Instance.Show<UISystemConfig>();
                 GameManager.Instance.PauseGame();
             }
-            else
-            {
-                GameManager.Instance.ResumeGame();
-            }
+            //在UISystemConfig中调用Resume方法，否则会在波次结束后的暂停时间中继续游戏
         }
     }
 
@@ -60,7 +60,6 @@ public class UIMainBattle : MonoBehaviour
             HealthBar.value = Player.Instance.Health / Player.Instance.MaxHealth;
         }
     }
-
     public void UpdateExpBar(object[] param)
     {
         if (ExpBar != null && Level != null)

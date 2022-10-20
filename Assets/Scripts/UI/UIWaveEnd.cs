@@ -28,9 +28,9 @@ public class UIWaveEnd : UIWindow
         if (Player.Instance.UpgradePerk > 0)
         {
             Debug.Log("Update Upgrade Item");
-            UpgradeItems[0].Init(DataManager.Instance.Upgrades[1]);
-            UpgradeItems[1].Init(DataManager.Instance.Upgrades[2]);
-            UpgradeItems[2].Init(DataManager.Instance.Upgrades[3]);
+            UpgradeItems[0].Init(DataManager.Instance.Upgrades[DataManager.Instance.Levels[Player.Instance.Level-Player.Instance.UpgradePerk].Upgrade1]);
+            UpgradeItems[1].Init(DataManager.Instance.Upgrades[DataManager.Instance.Levels[Player.Instance.Level - Player.Instance.UpgradePerk].Upgrade2]);
+            UpgradeItems[2].Init(DataManager.Instance.Upgrades[DataManager.Instance.Levels[Player.Instance.Level - Player.Instance.UpgradePerk].Upgrade3]);
         }
         else
         {

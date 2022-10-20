@@ -7,7 +7,7 @@ public class Player : Singleton<Player>
 {
     public GameObject Character;
 
-    public float[] NextLevelExpArray = new float[] { 0, 50, 100, 200, 400, 800, 1600, 3200 };
+    public float[] NextLevelExpArray = new float[] { 0, 50, 100, 200, 400, 800, 1600, 3200,6400,12800,25600,51200,102400 };
 
     private float experience;
     /// <summary>
@@ -139,6 +139,7 @@ public class Player : Singleton<Player>
             isDead = value;
             if(value == true)
             {
+                Character.GetComponent<Animator>().SetTrigger("Death");
                 EventManager.Instance.SendEvent("GameOver", new object[] { });
                 UIManager.Instance.Show<UIGameOver>();
             }
@@ -166,6 +167,26 @@ public class Player : Singleton<Player>
             EventManager.Instance.SendEvent("SetUpgradePerk", new object[] { upgradePerk });
         }
     }
+
+    private float autoRecover;
+    public float AutoRecover
+    {
+        get { return autoRecover; }
+        set
+        {
+            autoRecover = value;
+        }
+    }
+
+    private float vampirism;
+    public float Vampirism
+    {
+        get { return vampirism; }
+        set
+        {
+            vampirism = value;
+        }
+    }
     public Player()
     {
         Force = 3;
@@ -180,6 +201,9 @@ public class Player : Singleton<Player>
         CatchCD = 3;
         BonusTime = 2;
         UpgradePerk = 0;
+
+        AutoRecover = 0;
+        Vampirism = 0;
 
         Experience = 0;
         Level = 1;
@@ -209,12 +233,16 @@ public class Player : Singleton<Player>
         IsDead = false;
         Boomerangs.Clear();
 
+        AutoRecover = 0;
+        Vampirism = 0;
+
         Experience = 0;
         Level = 1;
     }
 
     public void GetAttacked(float atk)
     {
+        Character.GetComponent<Animator>().SetTrigger("Hit");
         Health -= atk;
         SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Open);
     }

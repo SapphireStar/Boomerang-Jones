@@ -25,14 +25,17 @@ public class UISystemConfig : UIWindow
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
             OnYesClick();
+            
+        }
     }
     public override void OnYesClick()
     {
-        GameManager.Instance.ResumeGame();
+        //在最底层的父类调用ResumeGame，否则无法继续
+        base.OnYesClick();
         SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
         PlayerPrefs.Save();
-        base.OnYesClick();
     }
 
     public void MusicToggle()

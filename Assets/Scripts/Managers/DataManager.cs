@@ -11,10 +11,10 @@ using Newtonsoft.Json;
 public class DataManager : Singleton<DataManager>
 {
     public string DataPath;
-    public Dictionary<int, EnemyDefine> Enemies;
-    public Dictionary<int, WaveDefine> Waves;
-    public Dictionary<int, UpgradeDefine> Upgrades;
-    public Dictionary<int, LevelDefine> Levels;//�洢ÿ��������ѡ��
+    public Dictionary<int, EnemyDefine> Enemies = null;
+    public Dictionary<int, WaveDefine> Waves = null;
+    public Dictionary<int, UpgradeDefine> Upgrades = null;
+    public Dictionary<int, LevelDefine> Levels = null;
 
 
     public DataManager()
@@ -27,6 +27,15 @@ public class DataManager : Singleton<DataManager>
     {
         string json = File.ReadAllText(this.DataPath + "EnemyDefine.txt");
         this.Enemies = JsonConvert.DeserializeObject<Dictionary<int, EnemyDefine>>(json);
+
+
+        json = File.ReadAllText(this.DataPath + "WaveDefine.txt");
+        this.Waves = JsonConvert.DeserializeObject<Dictionary<int, WaveDefine>>(json);
+
+
+        json = File.ReadAllText(this.DataPath + "UpgradeDefine.txt");
+        this.Upgrades = JsonConvert.DeserializeObject<Dictionary<int, UpgradeDefine>>(json);
+
 
     }
 
@@ -44,6 +53,10 @@ public class DataManager : Singleton<DataManager>
 
         json = File.ReadAllText(this.DataPath + "UpgradeDefine.txt");
         this.Upgrades = JsonConvert.DeserializeObject<Dictionary<int, UpgradeDefine>>(json);
+        yield return null;
+
+        json = File.ReadAllText(this.DataPath + "LevelDefine.txt");
+        this.Levels = JsonConvert.DeserializeObject<Dictionary<int, LevelDefine>>(json);
         yield return null;
 
 

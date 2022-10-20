@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Utilities;
 using UnityEngine;
 
 public class CharacterManager : MonoSingleton<CharacterManager>
@@ -16,7 +15,6 @@ public class CharacterManager : MonoSingleton<CharacterManager>
     }
     public void PlayerEnterScene()
     {
-        Log.InfoFormat("PlayerEnterScene");
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = Vector3.zero;
         Player.Instance.Character = character;

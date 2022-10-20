@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Managers;
-using Assets.Scripts.Utilities;
 using UnityEngine;
 
 public class UIMainMenu : MonoBehaviour
@@ -33,19 +32,20 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnClickNextScene()
     {
-        Log.InfoFormat("EnterBattleScene");
         SceneManager.Instance.LoadScene("BattleScene");
 
         SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
+        EventManager.Instance.SendEvent("RestartGame");
     }
 
     public void OnClickExit()
     {
+        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
 Application.Quit();
 #endif
-        
+
     }
 }

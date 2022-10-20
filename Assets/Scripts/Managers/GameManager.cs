@@ -7,16 +7,6 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public enum SpawnState { SPAWNING,WAITING,COUNTING}
 
-    [System.Serializable]
-    public class Wave
-    {
-        public string name;
-        public Transform enemy;
-        public int count;
-        public float rate;
-    }
-
-    public Wave[] waves;
     private Dictionary<int, WaveDefine> dict = DataManager.Instance.Waves;
 
     private int playerLastKill;
@@ -39,6 +29,7 @@ public class GameManager : MonoSingleton<GameManager>
                                         new Vector3(Random.Range(-5,-3), Random.Range(3, -5),0),
                                          new Vector3(Random.Range(3,5), Random.Range(3, 5),0)};
         waveCountDown = timeBetweenWaves;
+        StartCoroutine(WaveCountDown(UIManager.Instance.Show<UIWaveCountDown>()));
 
         EventManager.Instance.Subscribe("RestartGame", Reset);
         EventManager.Instance.Subscribe("RestartGame", onRestartGame);
@@ -57,9 +48,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             if (!enemyIsAlive())
             {
-                UIManager.Instance.Show<UIWaveEnd>();
-                waveCountDown = timeBetweenWaves;
-                PauseGame();
+                StartCoroutine(WaitForNextWave());
+                return;
             }
             else
             {
@@ -77,6 +67,21 @@ public class GameManager : MonoSingleton<GameManager>
         {
             waveCountDown -= Time.deltaTime;
         }
+    }
+
+    IEnumerator WaitForNextWave()
+    {
+
+        while (Player.Instance.Boomerangs.Count > 0)
+        {
+            yield return null;
+        }
+        state = SpawnState.COUNTING;
+        waveCountDown = timeBetweenWaves;
+        yield return new WaitForSeconds(0.5f);
+        UIManager.Instance.Show<UIWaveEnd>();
+
+        PauseGame();
     }
 
     bool enemyIsAlive()
@@ -142,9 +147,19 @@ public class GameManager : MonoSingleton<GameManager>
     {
         ResumeGame();
         Game.Instance.Wave++;
+        StartCoroutine(WaveCountDown(UIManager.Instance.Show<UIWaveCountDown>()));
         waveCountDown = timeBetweenWaves;
         playerLastKill = Player.Instance.KillCount;
-        state = SpawnState.COUNTING;
+    }
+
+    IEnumerator WaveCountDown(UIWaveCountDown ui)
+    {
+        while (waveCountDown >= 0)
+        {
+            ui.SetCountDown((int)waveCountDown);
+            yield return null;
+        }
+        ui.OnCloseClick();
     }
 
     void onGameOver(object[] param)

@@ -171,6 +171,8 @@ MonoBehaviour:
   Background: {fileID: 2992925178348941609}
   icon: {fileID: 5891733329475804382}
   owner: {fileID: 0}
+  Name: {fileID: 5513224088703071195}
+  Description: {fileID: 4882222842438231410}
 --- !u!1 &6848978254320563607
 GameObject:
   m_ObjectHideFlags: 0

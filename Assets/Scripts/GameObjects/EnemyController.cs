@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 {
     public int EnemyType;
     public GameObject ExpPrefeb;
+    public Animator animator;
     StateMachine stateMachine;
 
 
@@ -27,6 +28,7 @@ public class EnemyController : MonoBehaviour
         atkCD = DataManager.Instance.Enemies[EnemyType].AtkCD;
         health = DataManager.Instance.Enemies[EnemyType].Hp;
 
+        animator = GetComponent<Animator>();
 
         ExpPrefeb = Resloader.Load<GameObject>("GameObjects/Exp");
     }
@@ -76,13 +78,20 @@ public class EnemyController : MonoBehaviour
                 SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
                 Player.Instance.KillCount++;
                 GenExp();
+                animator.SetTrigger("Death");
+                GetComponent<BoxCollider2D>().enabled = false;
+                stateMachine.SetNextState((State)new NormalEnemyDeathState());
                 
-                Destroy(gameObject);
+                
             }
+            animator.SetTrigger("Hit");
         }
 
     }
-
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
     public void OnEntryAnimationFinish()
     {
         stateMachine = GetComponent<StateMachine>();
@@ -91,7 +100,7 @@ public class EnemyController : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (stateMachine.CurrentState == null) return;
+        if (stateMachine==null|| stateMachine.CurrentState == null) return;
         if (collision.gameObject == Player.Instance.Character)
         {
             Debug.LogFormat("Type of Enemy is:{0}", DataManager.Instance.Enemies[EnemyType].Name);

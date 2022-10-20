@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeBaseState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeEntryState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeStateMachine.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyDeathState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyEntryState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyIdleState.cs" />
@@ -90,7 +91,6 @@
     <Compile Include="Assets\Scripts\GameObjects\Exp.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PlayerController.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
-    <Compile Include="Assets\Scripts\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DamageUIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
@@ -115,29 +115,20 @@
     <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\UISystemConfig.cs" />
+    <Compile Include="Assets\Scripts\UI\UIWaveCountDown.cs" />
     <Compile Include="Assets\Scripts\UI\UIWaveEnd.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldElement.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldElementManager.cs" />
     <Compile Include="Assets\Scripts\Utilities\EnumUtil.cs" />
     <Compile Include="Assets\Scripts\Utilities\GameUtil.cs" />
-    <Compile Include="Assets\Scripts\Utilities\Log.cs" />
     <Compile Include="Assets\Scripts\Utilities\MonoSingleton.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\readme.txt" />
-    <None Include="Assets\JsonDotNet\link.xml" />
-    <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.XML" />
-    <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.XML" />
-    <None Include="Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll" />
-    <None Include="Assets\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.dll" />
-    <None Include="Assets\JsonDotNet\Assemblies\AOT\Newtonsoft.Json.XML" />
     <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\contact.txt" />
-    <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
-    <None Include="Assets\Scripts\References\log4net.xml" />
     <None Include="Assets\Free Pixel Art Overworld Tileset\Free Pixel Art overworld tileset\changelog.txt" />
-    <None Include="Assets\Scripts\References\log4net.dll" />
     <None Include="Assets\Hero Knight - Pixel Art\ColorSwap\Sprites-ColorSwap.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -325,10 +316,7 @@
       <HintPath>E:\unity\Editor\2019.4.40f1c2\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\JsonDotNet\Assemblies\Standalone\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>Assets\Scripts\References\log4net.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>E:\unity\Editor\2019.4.40f1c2\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

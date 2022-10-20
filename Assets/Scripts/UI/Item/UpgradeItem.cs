@@ -14,12 +14,15 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
     public Image Background;
     public Image icon;
     public UIWaveEnd owner;
+    public Text Name;
+    public Text Description;
     public void Init(UpgradeDefine define)
     {
         Speed = define.Speed ;
         Hp = define.Health;
         Attack = define.Attack;
-
+        Name.text = define.Name;
+        Description.text = define.Description;
         
     }
     public void Unenable()
@@ -42,6 +45,7 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
             Player.Instance.UpgradePerk--;
             //Apply upgrade
             Debug.Log("You Upgraded!");
+
         }
 
     }

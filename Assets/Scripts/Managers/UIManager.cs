@@ -23,6 +23,7 @@ namespace Assets.Scripts.Managers
             this.UIResources.Add(typeof(UISystemConfig), new UIElement() { Resource = "UI/UISystemConfig", Cache = true });
             this.UIResources.Add(typeof(UIGameOver), new UIElement() { Resource = "UI/UIGameOver", Cache = true });
             this.UIResources.Add(typeof(UIWaveEnd), new UIElement() { Resource = "UI/UIWaveEnd", Cache = true });
+            this.UIResources.Add(typeof(UIWaveCountDown), new UIElement() { Resource = "UI/UIWaveCountDown", Cache = true });
         }
         ~UIManager()
         {
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Managers
 
         public T Show<T>()
         {
-            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Open);
+            //SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Open);
             Type type = typeof(T);
             if (this.UIResources.ContainsKey(type))
             {

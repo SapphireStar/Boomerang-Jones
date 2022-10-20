@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Utilities;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Down;
     public GameObject Right;
     public GameObject Left;
+    public Animator animator;
 
     private float catchCD;
     private MeshRenderer catchAreaMeshRenderer;
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
         catchCD = 0;
         catchAreaMeshRenderer = GetComponentInChildren<MeshRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void OnDestroy()
@@ -67,15 +68,25 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        if (horizontal > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX=true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        animator.SetFloat("Walk", Mathf.Max(Mathf.Abs(horizontal), Mathf.Abs(vertical)));
 
-        if (Mathf.Abs(horizontal) >0.2&&
+        if (Mathf.Abs(horizontal) >0.1&&
             ((horizontal > 0 && !Raycast(Right.transform.position, Vector2.right, 0.1f, "Wall", LayerMask.GetMask("Wall")))||
             (horizontal < 0&& !Raycast(Left.transform.position, Vector2.left, 0.1f, "Wall", LayerMask.GetMask("Wall"))))
             )
         {
+
                 transform.Translate(new Vector3(horizontal * Player.Instance.Speed * Time.deltaTime, 0, 0));
         }
-        if (Mathf.Abs(vertical) > 0.2&&
+        if (Mathf.Abs(vertical) > 0.1&&
             ((vertical > 0 && !Raycast(Up.transform.position, Vector2.up, 0.1f, "Wall", LayerMask.GetMask("Wall")))||
             (vertical < 0&& !Raycast(Down.transform.position, Vector2.down, 0.1f, "Wall", LayerMask.GetMask("Wall"))))
             )
