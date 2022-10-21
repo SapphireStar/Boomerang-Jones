@@ -22,7 +22,7 @@ public class LoadingManager : MonoBehaviour {
     {
         Debug.Log("Start");
         yield return DataManager.Instance.LoadData();
-        SoundManager.Instance.PlayMusic(SoundDefine.Music_Login);
+        SoundManager.Instance.PlayMusic(SoundDefine.Music_MainMenu);
 
     }
 

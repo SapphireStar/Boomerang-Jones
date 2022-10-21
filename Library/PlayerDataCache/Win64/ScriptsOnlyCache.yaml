@@ -1241,4 +1241,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
   - Assets/Scenes/BattleScene.unity
-  playerPath: E:/GitHub/Game_Projects/bin/BaseEnvironment.exe
+  playerPath: E:/GitHub/Oasis/bin/BaseEnvironment.exe

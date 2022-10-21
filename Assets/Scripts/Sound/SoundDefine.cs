@@ -6,6 +6,8 @@ public class SoundDefine
 {
     public const string Music_Login = "bgm-login";
     public const string Music_Select = "bgm-select";
+    public const string Music_Battle = "bgm-battle";
+    public const string Music_MainMenu = "bgm-mainmenu";
 
     public const string SFX_Message_Info = "ui/sfx_click1";
     public const string SFX_Message_Error = "ui/sfx_msg_error";

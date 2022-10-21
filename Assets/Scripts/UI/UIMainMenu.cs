@@ -34,7 +34,7 @@ public class UIMainMenu : MonoBehaviour
     {
         SceneManager.Instance.LoadScene("BattleScene");
 
-        SoundManager.Instance.PlayMusic(SoundDefine.Music_Select);
+        SoundManager.Instance.PlayMusic(SoundDefine.Music_Battle);
         EventManager.Instance.SendEvent("RestartGame");
     }
 

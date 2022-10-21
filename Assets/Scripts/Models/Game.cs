@@ -27,11 +27,14 @@ public class Game : Singleton<Game>
             isPause = value;
         }
     }
+
+    public float HitSoundCD = 0.05f;
     public Game()
     {
         Difficulty = 1;
         SpawnDuration = 1.5f;
         Wave = 1;
+        HitSoundCD = 0.05f;
 
         EventManager.Instance.Subscribe("RestartGame", Reset);
     }
@@ -44,5 +47,6 @@ public class Game : Singleton<Game>
         Difficulty = 1;
         SpawnDuration = 1.5f;
         Wave = 1;
+        HitSoundCD = 0.05f;
     }
 }

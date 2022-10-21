@@ -75,7 +75,12 @@ public class EnemyController : MonoBehaviour
 
             if (health <= 0)
             {
-                SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
+                if (Game.Instance.HitSoundCD <= 0)
+                {
+                    SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
+                    Game.Instance.HitSoundCD = 0.05f;
+                }
+                
                 Player.Instance.KillCount++;
                 GenExp();
                 animator.SetTrigger("Death");

@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     private float catchCD;
+    private float autorecoverCD = 1;
     private MeshRenderer catchAreaMeshRenderer;
     private float bonusTime;//抓到回旋镖后的奖励时间
     private int comboMultipler; //连"接"加成
+
 
 
     void Start()
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
         {
             Movement();
             checkCatchCD();
+            AutoRecover();
             bonusTime -= Time.deltaTime;
         }
 
@@ -112,8 +115,10 @@ public class PlayerController : MonoBehaviour
             go.transform.position = transform.position + (position - transform.position).normalized;
             //若处于接到回旋镖的奖励时间中，得到双倍伤害
             go.GetComponent<Boomerang>().Shoot(
-                new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y), 
-                Player.Instance.Force, bonusTime>0? Player.Instance.Attack*2: Player.Instance.Attack);
+                new Vector2(position.x,position.y) - new Vector2(transform.position.x, transform.position.y),
+                //Player.Instance.Force, bonusTime>0? Player.Instance.Attack*2: Player.Instance.Attack);
+                Player.Instance.Force, bonusTime > 0 ?
+                Player.Instance.Attack * ((comboMultipler > 2 ? 2 : 1 + 0.5f * comboMultipler)) : Player.Instance.Attack);
             //玩家丢出回旋镖后，将其加入玩家的回旋镖列表中，用于收回和限制回旋镖最大数量
             Player.Instance.Boomerangs.Add(go.GetComponent<Boomerang>());
 
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_bonusBoomerang);
                 EventManager.Instance.SendEvent("ShakeCamera");
-                bonusTime = 0;
+                bonusTime *= 0.5f;
             }
             else
             {
@@ -165,12 +170,14 @@ public class PlayerController : MonoBehaviour
                     //重置接回旋镖的CD
                     //增加bonusTime
                     caughtAny = true;
+                    comboMultipler++;
                     bonusTime = Player.Instance.BonusTime;
                     EventManager.Instance.SendEvent("ShakeCamera");
                 }
             }
             if (!caughtAny)
             {
+                comboMultipler = 0;
                 catchCD = Player.Instance.CatchCD;
                 SoundManager.Instance.PlaySound(SoundDefine.SFX_Message_Error);
             }
@@ -224,7 +231,13 @@ public class PlayerController : MonoBehaviour
 
     public void AutoRecover()
     {
-        Player.Instance.Health += Player.Instance.AutoRecover;
+        if (Player.Instance.AutoRecover>0&& autorecoverCD <= 0)
+        {
+            Player.Instance.Health += Player.Instance.AutoRecover;
+            autorecoverCD = 1;
+        }
+        else autorecoverCD -= Time.deltaTime;
+
     }
 
 

@@ -64,7 +64,9 @@ public class UIMainBattle : MonoBehaviour
     {
         if (ExpBar != null && Level != null)
         {
-            Level.text = string.Format("Level: {0}", param[0].ToString());
+            if((int)param[0]>=15) 
+                Level.text = string.Format("Level: {0}", "Max");
+            else Level.text = string.Format("Level: {0}", param[0].ToString());
             ExpBar.value = (float)param[1] / Player.Instance.NextLevelExpArray[Player.Instance.Level];
         }
 

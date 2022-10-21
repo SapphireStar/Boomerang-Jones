@@ -8,7 +8,7 @@ public class Player : Singleton<Player>
     public enum Status { MaxHealth, Attack,Speed,Vampirism,AutoRecover}
     public GameObject Character;
 
-    public float[] NextLevelExpArray = new float[] { 0, 50, 100, 200, 400, 800, 1600, 3200,6400,12800,25600,51200,102400 };
+    public float[] NextLevelExpArray = new float[] { 0, 300, 600, 1000, 1500, 2200, 3000, 4000,5200,6400,7600,8800,9000,10400,11600,13000 };
 
     private float experience;
 

@@ -73,6 +73,8 @@ public class GameManager : MonoSingleton<GameManager>
         {
             waveCountDown -= Time.deltaTime;
         }
+
+        if (Game.Instance.HitSoundCD > 0) Game.Instance.HitSoundCD -= Time.deltaTime;
     }
 
     IEnumerator WaitForNextWave()

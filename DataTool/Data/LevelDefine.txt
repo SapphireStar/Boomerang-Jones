@@ -2,43 +2,85 @@
   "1": {
     "ID": 1,
     "Upgrade1": 1,
-    "Upgrade2": 4,
-    "Upgrade3": 5
+    "Upgrade2": 2,
+    "Upgrade3": 3
   },
   "2": {
     "ID": 2,
-    "Upgrade1": 3,
-    "Upgrade2": 5,
+    "Upgrade1": 5,
+    "Upgrade2": 2,
     "Upgrade3": 4
   },
   "3": {
     "ID": 3,
-    "Upgrade1": 2,
-    "Upgrade2": 1,
+    "Upgrade1": 1,
+    "Upgrade2": 2,
     "Upgrade3": 3
   },
   "4": {
     "ID": 4,
-    "Upgrade1": 2,
-    "Upgrade2": 3,
-    "Upgrade3": 1
+    "Upgrade1": 5,
+    "Upgrade2": 2,
+    "Upgrade3": 4
   },
   "5": {
     "ID": 5,
     "Upgrade1": 1,
-    "Upgrade2": 3,
-    "Upgrade3": 2
+    "Upgrade2": 2,
+    "Upgrade3": 3
   },
   "6": {
     "ID": 6,
-    "Upgrade1": 3,
-    "Upgrade2": 1,
-    "Upgrade3": 2
+    "Upgrade1": 5,
+    "Upgrade2": 2,
+    "Upgrade3": 4
   },
   "7": {
     "ID": 7,
     "Upgrade1": 3,
     "Upgrade2": 2,
     "Upgrade3": 1
+  },
+  "8": {
+    "ID": 8,
+    "Upgrade1": 1,
+    "Upgrade2": 2,
+    "Upgrade3": 3
+  },
+  "9": {
+    "ID": 9,
+    "Upgrade1": 5,
+    "Upgrade2": 2,
+    "Upgrade3": 4
+  },
+  "10": {
+    "ID": 10,
+    "Upgrade1": 7,
+    "Upgrade2": 6,
+    "Upgrade3": 8
+  },
+  "11": {
+    "ID": 11,
+    "Upgrade1": 8,
+    "Upgrade2": 6,
+    "Upgrade3": 7
+  },
+  "12": {
+    "ID": 12,
+    "Upgrade1": 9,
+    "Upgrade2": 10,
+    "Upgrade3": 7
+  },
+  "13": {
+    "ID": 13,
+    "Upgrade1": 8,
+    "Upgrade2": 7,
+    "Upgrade3": 6
+  },
+  "14": {
+    "ID": 14,
+    "Upgrade1": 6,
+    "Upgrade2": 8,
+    "Upgrade3": 7
   }
 }

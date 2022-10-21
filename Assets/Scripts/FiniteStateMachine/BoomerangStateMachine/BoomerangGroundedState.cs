@@ -12,6 +12,7 @@ public class BoomerangGroundedState : State
         {
             Destroy(item);
         }
+        stateMachine.GetComponent<Animator>().SetTrigger("Unenable");
         Debug.Log("");
     }
     public override void onFixedUpdate()

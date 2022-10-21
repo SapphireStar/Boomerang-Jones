@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4958859001021014037}
   - component: {fileID: 2618012734462384433}
   - component: {fileID: 6507749174662983695}
+  - component: {fileID: 7350766800673877821}
   m_Layer: 0
   m_Name: boomerang
   m_TagString: Untagged
@@ -163,6 +164,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2287911531302293856}
   m_CullTransparentMesh: 0
+--- !u!95 &7350766800673877821
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287911531302293856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 605a290e3bf021042bed9fae9ccb6ed8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9149359517977141732
 GameObject:
   m_ObjectHideFlags: 0

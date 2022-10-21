@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bf68113b9495a174e833acf358318bdf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c499a644bc22ad44c92146c4c36883be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -168,6 +168,7 @@ MonoBehaviour:
   Hp: 0
   Attack: 0
   Vampirism: 0
+  AutoRecover: 0
   Background: {fileID: 2992925178348941609}
   icon: {fileID: 5891733329475804382}
   owner: {fileID: 0}

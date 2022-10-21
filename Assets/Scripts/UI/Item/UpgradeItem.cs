@@ -23,7 +23,9 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
         Hp = define.Health;
         Attack = define.Attack;
         Vampirism = define.Vampirism;
-        AutoRecover = define.AutoRecove;
+        AutoRecover = define.AutoRecover;
+
+        icon.sprite = Resloader.Load<Sprite>(define.Path);
 
         Name.text = define.Name;
         Description.text = define.Description;

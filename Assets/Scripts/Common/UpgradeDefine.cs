@@ -12,6 +12,7 @@ public class UpgradeDefine
     public float Attack { get; set; }
     public float Speed { get; set; }
     public float Vampirism { get; set; }
-    public float AutoRecove { get; set; }
+    public float AutoRecover { get; set; }
+    public string Path { get; set; }
 
 }

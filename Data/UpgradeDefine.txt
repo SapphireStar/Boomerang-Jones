@@ -2,56 +2,121 @@
   "1": {
     "ID": 1,
     "Name": "Tiny Being'S Ring",
-    "Description": "Max Hp +5%",
+    "Description": "Max Hp +10%",
     "Type": 1,
-    "Health": 0.05,
+    "Health": 0.1,
     "Attack": 0.0,
     "Speed": 0.0,
     "Vampirism": 0.0,
-    "AutoRecover": 0.0
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Hp"
   },
   "2": {
     "ID": 2,
-    "Name": "Lion's Ring",
+    "Name": "Ring of lion",
     "Description": "atk +5%",
     "Type": 2,
     "Health": 0.0,
     "Attack": 0.05,
     "Speed": 0.0,
     "Vampirism": 0.0,
-    "AutoRecover": 0.0
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Attack"
   },
   "3": {
     "ID": 3,
-    "Name": "Silvercat Ring",
+    "Name": "Ring of Silvercat",
     "Description": "SPD +5%",
     "Type": 3,
     "Health": 0.0,
     "Attack": 0.0,
     "Speed": 0.05,
     "Vampirism": 0.0,
-    "AutoRecover": 0.0
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Speed"
   },
   "4": {
     "ID": 4,
     "Name": "Ring of Evil",
-    "Description": "Vamp +5%",
+    "Description": "Vamp +0.2%",
     "Type": 4,
     "Health": 0.0,
     "Attack": 0.0,
     "Speed": 0.0,
-    "Vampirism": 0.05,
-    "AutoRecover": 0.0
+    "Vampirism": 0.002,
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Vampire"
   },
   "5": {
     "ID": 5,
-    "Name": "Sun Princess Ring",
+    "Name": "Ring of Sun ",
     "Description": "Recover +1",
     "Type": 5,
     "Health": 0.0,
     "Attack": 0.0,
     "Speed": 0.0,
     "Vampirism": 0.0,
-    "AutoRecover": 1.0
+    "AutoRecover": 1.0,
+    "Path": "Sprite/Autorecover"
+  },
+  "6": {
+    "ID": 6,
+    "Name": "Tiny Being +1",
+    "Description": "Max Hp +20%",
+    "Type": 1,
+    "Health": 0.2,
+    "Attack": 0.0,
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Hp"
+  },
+  "7": {
+    "ID": 7,
+    "Name": "Ring of lion +1",
+    "Description": "atk +10%",
+    "Type": 2,
+    "Health": 0.0,
+    "Attack": 0.1,
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Attack"
+  },
+  "8": {
+    "ID": 8,
+    "Name": "Ring of Silvercat +1 ",
+    "Description": "SPD +10%",
+    "Type": 3,
+    "Health": 0.0,
+    "Attack": 0.0,
+    "Speed": 0.1,
+    "Vampirism": 0.0,
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Speed"
+  },
+  "9": {
+    "ID": 9,
+    "Name": "Ring of Evil +1",
+    "Description": "Vamp +0.4%",
+    "Type": 4,
+    "Health": 0.0,
+    "Attack": 0.0,
+    "Speed": 0.0,
+    "Vampirism": 0.004,
+    "AutoRecover": 0.0,
+    "Path": "Sprite/Vampire"
+  },
+  "10": {
+    "ID": 10,
+    "Name": "Ring of Sun +1",
+    "Description": "Recover +1.5",
+    "Type": 5,
+    "Health": 0.0,
+    "Attack": 0.0,
+    "Speed": 0.0,
+    "Vampirism": 0.0,
+    "AutoRecover": 1.5,
+    "Path": "Sprite/Autorecover"
   }
 }

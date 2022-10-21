@@ -11,15 +11,15 @@
     "ID": 2,
     "EnemyCount": 10,
     "SubWaveCount": 4,
-    "Difficulty": 1.0,
+    "Difficulty": 1.1,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.02
   },
   "3": {
     "ID": 3,
-    "EnemyCount": 15,
+    "EnemyCount": 10,
     "SubWaveCount": 5,
-    "Difficulty": 1.0,
+    "Difficulty": 1.2,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.03
   },
@@ -33,23 +33,23 @@
   },
   "5": {
     "ID": 5,
-    "EnemyCount": 20,
+    "EnemyCount": 15,
     "SubWaveCount": 5,
-    "Difficulty": 1.2,
+    "Difficulty": 1.3,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.05
   },
   "6": {
     "ID": 6,
-    "EnemyCount": 30,
+    "EnemyCount": 20,
     "SubWaveCount": 6,
-    "Difficulty": 1.2,
+    "Difficulty": 1.4,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.06
   },
   "7": {
     "ID": 7,
-    "EnemyCount": 40,
+    "EnemyCount": 20,
     "SubWaveCount": 6,
     "Difficulty": 1.4,
     "NormalEnemyRate": 1.0,
@@ -57,25 +57,25 @@
   },
   "8": {
     "ID": 8,
-    "EnemyCount": 50,
-    "SubWaveCount": 7,
-    "Difficulty": 1.4,
+    "EnemyCount": 25,
+    "SubWaveCount": 6,
+    "Difficulty": 1.6,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.08
   },
   "9": {
     "ID": 9,
-    "EnemyCount": 50,
-    "SubWaveCount": 8,
-    "Difficulty": 1.5,
+    "EnemyCount": 25,
+    "SubWaveCount": 7,
+    "Difficulty": 1.6,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.09
   },
   "10": {
     "ID": 10,
-    "EnemyCount": 50,
-    "SubWaveCount": 10,
-    "Difficulty": 1.5,
+    "EnemyCount": 30,
+    "SubWaveCount": 8,
+    "Difficulty": 1.8,
     "NormalEnemyRate": 1.0,
     "SpiderEnemyRate": 0.1
   }
