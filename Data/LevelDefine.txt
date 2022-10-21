@@ -7,8 +7,8 @@
   },
   "2": {
     "ID": 2,
-    "Upgrade1": 5,
-    "Upgrade2": 2,
+    "Upgrade1": 3,
+    "Upgrade2": 5,
     "Upgrade3": 4
   },
   "3": {

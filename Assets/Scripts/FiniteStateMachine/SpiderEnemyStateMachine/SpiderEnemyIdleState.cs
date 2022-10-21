@@ -21,6 +21,7 @@ public class SpiderEnemyIdleState : State
         {
             State nextState = (State)new SpiderEnemyTraceState();
             stateMachine.SetNextState(nextState);
+            stateMachine.GetComponent<Animator>().SetTrigger("Jump");
         }
     }
 }

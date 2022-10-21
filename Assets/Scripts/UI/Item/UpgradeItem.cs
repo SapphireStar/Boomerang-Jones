@@ -39,19 +39,45 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
     {
 
     }
+    Dictionary<Player.Status, float> Upgrades = Player.Instance.Upgrades;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Player.Instance.UpgradePerk > 0)
         {
             SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
-            Player.Instance.UpgradePerk--;
+            
             //Apply upgrade
+            
+
+            if(Upgrades.ContainsKey(Player.Status.Attack))
+                Upgrades[Player.Status.Attack] += Attack;
+            else
+                Upgrades[Player.Status.Attack] = Attack;
+
+            if(Upgrades.ContainsKey(Player.Status.Speed))
+                Upgrades[Player.Status.Speed] += Speed;
+            else
+                Upgrades[Player.Status.Speed] = Speed;
+
+            if (Upgrades.ContainsKey(Player.Status.MaxHealth))
+                Upgrades[Player.Status.MaxHealth] += Hp;
+            else
+                Upgrades[Player.Status.MaxHealth] = Hp;
+
+
+            if (Upgrades.ContainsKey(Player.Status.Vampirism))
+                Upgrades[Player.Status.Vampirism] += Vampirism;
+            else
+                Upgrades[Player.Status.Vampirism] = Vampirism;
+
+            if (Upgrades.ContainsKey(Player.Status.AutoRecover))
+                Upgrades[Player.Status.AutoRecover] += AutoRecover;
+            else
+                Upgrades[Player.Status.AutoRecover] = AutoRecover;
+
+            EventManager.Instance.SendEvent("SetHealth", new object[] { Player.Instance.Health });
+            Player.Instance.UpgradePerk--;
             Debug.Log("You Upgraded!");
-            Player.Instance.Upgrades[Player.Status.Attack] += Attack;
-            Player.Instance.Upgrades[Player.Status.Speed] += Speed;
-            Player.Instance.Upgrades[Player.Status.MaxHealth] += Hp;
-            Player.Instance.Upgrades[Player.Status.Vampirism] += Vampirism;
-            Player.Instance.Upgrades[Player.Status.AutoRecover] += AutoRecover;
         }
 
     }
@@ -71,7 +97,7 @@ public class UpgradeItem : MonoBehaviour,IPointerEnterHandler,IPointerClickHandl
     {
         if (Player.Instance.UpgradePerk > 0)
         {
-            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_icon_hover);
             Background.color = new Color(179f / 255f, 1, 173f / 255f, 183f / 255f);
             icon.color = Color.white;
         }

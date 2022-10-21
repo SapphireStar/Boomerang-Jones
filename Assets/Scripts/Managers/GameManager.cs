@@ -48,6 +48,12 @@ public class GameManager : MonoSingleton<GameManager>
         {
             if (!enemyIsAlive())
             {
+                //通关提示
+                if (Game.Instance.Wave == 10)
+                {
+                    UIManager.Instance.Show<UIWin>();
+                    PauseGame();
+                }
                 StartCoroutine(WaitForNextWave());
                 return;
             }
@@ -75,6 +81,10 @@ public class GameManager : MonoSingleton<GameManager>
         while (Player.Instance.Boomerangs.Count > 0)
         {
             yield return null;
+        }
+        foreach (var item in GameObject.FindGameObjectsWithTag("Exp"))
+        {
+            Destroy(item);
         }
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;

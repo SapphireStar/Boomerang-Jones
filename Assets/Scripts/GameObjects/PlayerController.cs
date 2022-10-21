@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     private float catchCD;
     private MeshRenderer catchAreaMeshRenderer;
     private float bonusTime;//抓到回旋镖后的奖励时间
-    
+    private int comboMultipler; //连"接"加成
+
 
     void Start()
     {
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour
                     Boomerang remove = Player.Instance.Boomerangs[i];
                     Player.Instance.Boomerangs.Remove(remove);
                     Destroy(remove.gameObject);
-                    SoundManager.Instance.PlaySound(SoundDefine.SFX_Message_Error);
+                    SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_grab);
                     i--;
                     //重置接回旋镖的CD
                     //增加bonusTime
@@ -168,7 +169,11 @@ public class PlayerController : MonoBehaviour
                     EventManager.Instance.SendEvent("ShakeCamera");
                 }
             }
-            if (!caughtAny) catchCD = Player.Instance.CatchCD;
+            if (!caughtAny)
+            {
+                catchCD = Player.Instance.CatchCD;
+                SoundManager.Instance.PlaySound(SoundDefine.SFX_Message_Error);
+            }
         }
 
     }

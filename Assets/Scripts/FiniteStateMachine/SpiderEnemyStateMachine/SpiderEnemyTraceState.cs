@@ -31,6 +31,7 @@ public class SpiderEnemyTraceState:State
         {
             State nextState = (State)new SpiderEnemyIdleState();
             stateMachine.SetNextState(nextState);
+
         }
 
     }

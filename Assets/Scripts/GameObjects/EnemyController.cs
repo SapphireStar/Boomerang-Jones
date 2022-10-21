@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         //TODO:将敌人的受击和死亡分为两个状态，加入有限状态机中
         if (collision.GetComponent<Boomerang>() != null)
         {
-            SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_hit);
             health -= collision.GetComponent<Boomerang>().Attack;
             //告诉相机控制器，敌人被击中
             EventManager.Instance.SendEvent("EnemyAttacked");

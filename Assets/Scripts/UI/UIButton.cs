@@ -8,7 +8,7 @@ public class UIButton : MonoBehaviour,IPointerEnterHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Close);
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_icon_hover);
     }
 
 }

@@ -51,9 +51,9 @@ public class Player : Singleton<Player>
     { 
         get 
         {
-            float upgrade = 1;
+            float upgrade = 0;
             Upgrades.TryGetValue(Status.Speed, out upgrade);
-            upgrade = Mathf.Max(upgrade, 1);
+            upgrade = 1 + upgrade;
             return speed*upgrade;
         } 
         set { speed = value; }
@@ -64,9 +64,9 @@ public class Player : Singleton<Player>
     { 
         get 
         {
-            float upgrade = 1;
+            float upgrade = 0;
             Upgrades.TryGetValue(Status.Attack, out upgrade);
-            upgrade = Mathf.Max(upgrade, 1);
+            upgrade = 1 + upgrade;
             return attack*upgrade;
         }
         set { attack = value; }
@@ -99,9 +99,9 @@ public class Player : Singleton<Player>
     {
         get 
         {
-            float upgrade = 1;
+            float upgrade = 0;
             Upgrades.TryGetValue(Status.MaxHealth, out upgrade);
-            upgrade = Mathf.Max(upgrade, 1);
+            upgrade = 1 + upgrade;
             return maxHealth*upgrade;
         }
         set
@@ -221,7 +221,7 @@ public class Player : Singleton<Player>
         {
             float upgrade = 0;
             Upgrades.TryGetValue(Status.Vampirism, out upgrade);
-            return vampirism*upgrade;
+            return vampirism+upgrade;
         }
         set
         {
@@ -250,7 +250,7 @@ public class Player : Singleton<Player>
         Experience = 0;
         Level = 1;
 
-        
+        Upgrades.Clear();
 
         EventManager.Instance.Subscribe("RestartGame", Reset);
     }
@@ -292,6 +292,6 @@ public class Player : Singleton<Player>
     {
         Character.GetComponent<Animator>().SetTrigger("Hit");
         Health -= atk;
-        SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Win_Open);
+        SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_playerhit);
     }
 }

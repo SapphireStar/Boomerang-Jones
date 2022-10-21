@@ -103,6 +103,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             musicAudioSource.Stop();
         }
         musicAudioSource.clip = clip;
+        musicAudioSource.loop = true;
         musicAudioSource.Play();
     }
 
