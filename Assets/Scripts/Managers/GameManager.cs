@@ -29,6 +29,9 @@ public class GameManager : MonoSingleton<GameManager>
                                         new Vector3(Random.Range(-5,-3), Random.Range(3, -5),0),
                                          new Vector3(Random.Range(3,5), Random.Range(3, 5),0)};
         waveCountDown = timeBetweenWaves;
+
+        //初始化方块
+        StartCoroutine(updateBlock());
         StartCoroutine(WaveCountDown(UIManager.Instance.Show<UIWaveCountDown>()));
 
         EventManager.Instance.Subscribe("RestartGame", Reset);
@@ -162,6 +165,9 @@ public class GameManager : MonoSingleton<GameManager>
         StartCoroutine(WaveCountDown(UIManager.Instance.Show<UIWaveCountDown>()));
         waveCountDown = timeBetweenWaves;
         playerLastKill = Player.Instance.KillCount;
+
+        //开始更新方块
+        StartCoroutine(updateBlock());
     }
 
     IEnumerator WaveCountDown(UIWaveCountDown ui)
@@ -187,5 +193,27 @@ public class GameManager : MonoSingleton<GameManager>
     {
         playerLastKill = 0;
         StopAllCoroutines();
+    }
+    List<GameObject> blocks = new List<GameObject>();
+    IEnumerator updateBlock()
+    {
+        //清除原有方块
+        foreach (var item in blocks)
+        {
+            Destroy(item);
+        }
+        blocks.Clear();
+
+        StartCoroutine(DataManager.Instance.LoadBlocks());
+        yield return null;
+        Dictionary<int, BlockDefine> dict = DataManager.Instance.Blocks;
+        foreach (var key in dict.Keys)
+        {
+            BlockType type = (BlockType)dict[key].Type;
+            GameObject prefab = Resources.Load<GameObject>("GameObjects/Blocks/" + type.ToString());
+            blocks.Add(Instantiate(prefab, new Vector3(dict[key].X + 0.5f, dict[key].Y + 0.5f, dict[key].Z), Quaternion.identity));
+
+        }
+
     }
 }

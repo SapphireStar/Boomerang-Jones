@@ -15,6 +15,7 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, WaveDefine> Waves = null;
     public Dictionary<int, UpgradeDefine> Upgrades = null;
     public Dictionary<int, LevelDefine> Levels = null;
+    public Dictionary<int, BlockDefine> Blocks = null;
 
 
     public DataManager()
@@ -60,6 +61,13 @@ public class DataManager : Singleton<DataManager>
         yield return null;
 
 
+    }
+
+    public IEnumerator LoadBlocks()
+    {
+        string json = File.ReadAllText(this.DataPath + "BlockDefine.txt");
+        this.Blocks = JsonConvert.DeserializeObject<Dictionary<int, BlockDefine>>(json);
+        yield return null;
     }
 
 #if UNITY_EDITOR
