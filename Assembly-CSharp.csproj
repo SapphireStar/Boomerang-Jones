@@ -84,12 +84,15 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\State.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Battery.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Boomerang.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Bullet.cs" />
     <Compile Include="Assets\Scripts\GameObjects\CameraController.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DamageUI.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DrawHalfCircle.cs" />
     <Compile Include="Assets\Scripts\GameObjects\EnemyController.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Exp.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Mine.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PlayerController.cs" />
     <Compile Include="Assets\Scripts\LoadingManager.cs" />
     <Compile Include="Assets\Scripts\Managers\CharacterManager.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabButton.cs" />
     <Compile Include="Assets\Scripts\UI\TabView\TabView.cs" />
+    <Compile Include="Assets\Scripts\UI\UIBuilding.cs" />
     <Compile Include="Assets\Scripts\UI\UIButton.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
     <Compile Include="Assets\Scripts\UI\UIMainBattle.cs" />

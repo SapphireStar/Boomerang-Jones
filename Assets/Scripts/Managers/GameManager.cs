@@ -166,6 +166,10 @@ public class GameManager : MonoSingleton<GameManager>
         waveCountDown = timeBetweenWaves;
         playerLastKill = Player.Instance.KillCount;
 
+        //StartUpdateBlock();
+    }
+    public void StartUpdateBlock()
+    {
         //开始更新方块
         StartCoroutine(updateBlock());
     }

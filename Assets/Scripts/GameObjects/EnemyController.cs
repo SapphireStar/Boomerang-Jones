@@ -59,6 +59,37 @@ public class EnemyController : MonoBehaviour
         GameObject go = Instantiate(ExpPrefeb, pos, Quaternion.identity);
         go.GetComponent<Exp>().SetExp(DataManager.Instance.Enemies[EnemyType].Exp);
     }
+    public void GetHit(float damage)
+    {
+        if (stateMachine.CurrentState == null) return;
+        //TODO:将敌人的受击和死亡分为两个状态，加入有限状态机中
+
+            SoundManager.Instance.PlaySound(SoundDefine.SFX_Battle_hit);
+            health -= damage;
+            //告诉相机控制器，敌人被击中
+            EventManager.Instance.SendEvent("EnemyAttacked");
+            //显示伤害UI
+            DamageUIManager.Instance.ShowDamageUI(transform.position, (int)damage);
+
+            if (health <= 0)
+            {
+                if (Game.Instance.HitSoundCD <= 0)
+                {
+                    SoundManager.Instance.PlaySound(SoundDefine.SFX_UI_Click);
+                    Game.Instance.HitSoundCD = 0.05f;
+                }
+
+                Player.Instance.KillCount++;
+                GenExp();
+                animator.SetTrigger("Death");
+                GetComponent<BoxCollider2D>().enabled = false;
+                stateMachine.SetNextState((State)new NormalEnemyDeathState());
+
+
+            }
+            animator.SetTrigger("Hit");
+        
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

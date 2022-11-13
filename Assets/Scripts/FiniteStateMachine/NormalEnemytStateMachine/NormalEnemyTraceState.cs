@@ -12,6 +12,7 @@ public class NormalEnemyTraceState : State
     public override void onEnter(StateMachine _stateMachine)
     {
         base.onEnter(_stateMachine);
+        _stateMachine.gameObject.layer = LayerMask.NameToLayer("Enemy");//进入追踪状态后正式成为敌人，成为炮台的攻击目标
         /// <summary>
         /// 该状态是普通敌人的状态，从配置表中获取普通敌人的速度
         /// </summary>

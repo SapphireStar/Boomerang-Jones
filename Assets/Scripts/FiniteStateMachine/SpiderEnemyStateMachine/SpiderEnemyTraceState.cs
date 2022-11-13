@@ -9,6 +9,7 @@ public class SpiderEnemyTraceState:State
     public override void onEnter(StateMachine _stateMachine)
     {
         base.onEnter(_stateMachine);
+        _stateMachine.gameObject.layer = LayerMask.NameToLayer("SpecialEnemy");//进入追踪状态后正式成为敌人，成为炮台的攻击目标
         moveDuration = 0.5f;
         /// <summary>
         /// 该状态是普通敌人的状态，从配置表中获取普通敌人的速度

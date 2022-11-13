@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 218578759840142584}
   - component: {fileID: 1142912077443581878}
   - component: {fileID: 1622044305822900208}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: SpiderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
