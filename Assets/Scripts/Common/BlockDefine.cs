@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum BlockType
 {
-    Normal,
-    Special
+    Battery,
+    Mine
 }
 public class BlockDefine
 {
