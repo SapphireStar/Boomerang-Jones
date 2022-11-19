@@ -22,9 +22,30 @@ public class NormalEnemyTraceState : State
     public override void onFixedUpdate()
     {
         base.onFixedUpdate();
+        
         if (Vector3.Distance(stateMachine.transform.position, Player.Instance.Character.transform.position) > 0.1f)
         {
             stateMachine.transform.Translate((Player.Instance.Character.transform.position - stateMachine.transform.position).normalized * Time.deltaTime*speed);
         }
+        checkIsInSlowZone();
+    }
+    float checkCD = 0.5f;
+    void checkIsInSlowZone()
+    {
+        if (checkCD > 0)
+        {
+            checkCD -= Time.deltaTime;
+        }
+        else
+        {
+            checkCD = 0.5f;
+            Collider2D hit = Physics2D.OverlapCircle(stateMachine.transform.position, 0.2f, LayerMask.GetMask("SlowZone"));
+            if (hit != null)
+            {
+                Debug.Log("transition to slow");
+                stateMachine.SetNextState(new NormalEnemySlowTraceState());
+            }
+        }
+
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public enum BlockType
 {
     Battery,
-    Mine
+    Mine,
+    SlowZone
 }
 public class BlockDefine
 {

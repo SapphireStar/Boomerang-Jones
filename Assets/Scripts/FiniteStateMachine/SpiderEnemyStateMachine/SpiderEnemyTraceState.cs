@@ -34,6 +34,25 @@ public class SpiderEnemyTraceState:State
             stateMachine.SetNextState(nextState);
 
         }
+        checkIsInSlowZone();
+    }
+    float checkCD = 0.5f;
+    void checkIsInSlowZone()
+    {
+        if (checkCD > 0)
+        {
+            checkCD -= Time.deltaTime;
+        }
+        else
+        {
+            checkCD = 0.5f;
+            Collider2D hit = Physics2D.OverlapCircle(stateMachine.transform.position, 0.2f, LayerMask.GetMask("SlowZone"));
+            if (hit != null)
+            {
+                Debug.Log("transition to slow");
+                stateMachine.SetNextState(new SpiderEnemySlowTraceState());
+            }
+        }
 
     }
 }

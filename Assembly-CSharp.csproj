@@ -79,8 +79,10 @@
     <Compile Include="Assets\Scripts\FiniteStateMachine\MeleeStateMachine\MeleeStateMachine.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyDeathState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyEntryState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemySlowTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\NormalEnemytStateMachine\NormalEnemyTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyIdleState.cs" />
+    <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemySlowTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\SpiderEnemyStateMachine\SpiderEnemyTraceState.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\State.cs" />
     <Compile Include="Assets\Scripts\FiniteStateMachine\StateMachine.cs" />
