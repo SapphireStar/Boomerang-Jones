@@ -20,12 +20,18 @@ public class CameraController : MonoBehaviour
 
         EventManager.Instance.Subscribe("EnemyAttacked", OnEnemyAttacked);
         EventManager.Instance.Subscribe("ShakeCamera", OnShakeCamera);
+
+        EventManager.Instance.Subscribe("DisableMainCamera", OnDisableMainCamera);
+        EventManager.Instance.Subscribe("EnableMainCamera", OnEnableMainCamera);
     }
 
     public void OnDestroy()
     {
         EventManager.Instance.Unsubscribe("EnemyAttacked", OnEnemyAttacked);
         EventManager.Instance.Unsubscribe("ShakeCamera", OnShakeCamera);
+
+        EventManager.Instance.Unsubscribe("DisableMainCamera", OnDisableMainCamera);
+        EventManager.Instance.Unsubscribe("EnableMainCamera", OnEnableMainCamera);
     }
     void OnShakeCamera(object[] param)
     {
@@ -80,5 +86,19 @@ public class CameraController : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakerTime = time;
 
+    }
+
+    public CinemachineVirtualCameraBase Maincamera;
+    public CinemachineVirtualCameraBase SubCamera;
+
+    void OnDisableMainCamera(object[] param)
+    {
+        Maincamera.enabled = false;
+        Debug.Log("Disable Camera");
+    }
+    void OnEnableMainCamera(object[] param)
+    {
+        Maincamera.enabled = true;
+        Debug.Log("Enable Camera");
     }
 }

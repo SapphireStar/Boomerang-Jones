@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using Assets.Scripts.Managers;
+using Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
@@ -78,8 +81,17 @@ public class GameManager : MonoSingleton<GameManager>
         }
 
         if (Game.Instance.HitSoundCD > 0) Game.Instance.HitSoundCD -= Time.deltaTime;
+
+
+        if (buildingFlag)//当地形加载完成时，关闭地形加载界面
+        {
+            BuildingComplete();
+            buildingFlag = false;
+        }
     }
 
+    public CinemachineVirtualCameraBase Maincamera;
+    public CinemachineVirtualCameraBase SubCamera;
     IEnumerator WaitForNextWave()
     {
 
@@ -95,6 +107,11 @@ public class GameManager : MonoSingleton<GameManager>
         waveCountDown = timeBetweenWaves;
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.Show<UIWaveEnd>();
+
+        //发送切换摄像机事件
+        EventManager.Instance.SendEvent("DisableMainCamera", new object[] { });
+        //等待摄像机切换
+        yield return new WaitForSeconds(0.5f);
 
         PauseGame();
     }
@@ -144,16 +161,18 @@ public class GameManager : MonoSingleton<GameManager>
         Game.Instance.IsPause = true;
         if (Time.timeScale != 0)
         {
-            Debug.Log("PauseGame");
+            UnityEngine.Debug.Log("PauseGame");
             Time.timeScale = 0;
         }
     }
     public void ResumeGame()
     {
 
-        Debug.Log("ResumeGame");
+        UnityEngine.Debug.Log("ResumeGame");
         Time.timeScale = 1;
         Game.Instance.IsPause = false;
+
+        EventManager.Instance.SendEvent("EnableMainCamera", new object[] { });
     }
     /// <summary>
     /// 进入下一波敌人，更新玩家的上一次击杀数
@@ -186,6 +205,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     void onGameOver(object[] param)
     {
+        StartCoroutine(GameOver());
+    }
+
+    IEnumerator GameOver()
+    {
+        //发送切换摄像机事件
+        EventManager.Instance.SendEvent("DisableMainCamera", new object[] { });
+        //等待摄像机切换
+        yield return new WaitForSeconds(0.5f);
         PauseGame();
     }
 
@@ -219,5 +247,52 @@ public class GameManager : MonoSingleton<GameManager>
 
         }
 
+    }
+
+
+
+    private static bool buildingFlag = false;
+
+    static string sArguments = @"helloworld.py";
+    static Thread thread;
+    static UIBuilding go;
+    public void ChangeTerrain()
+    {
+        go = UIManager.Instance.Show<UIBuilding>();
+        //StartCoroutine(ChangeTerrain());
+        thread = new Thread(() => //使用多线程调用脚本，防止阻塞
+        {
+            Process p = new Process();
+            string path = @"E:\GitHub\Game_Projects\BaseEnvironment\Assets\Scripts\Python\" + sArguments;
+            UnityEngine.Debug.Log("hello python");
+            p.StartInfo.FileName = @"python.exe";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.Arguments = path;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.Start();
+            p.BeginOutputReadLine();
+            p.OutputDataReceived += new DataReceivedEventHandler(Out_RecvData);
+            p.WaitForExit();
+
+            UnityEngine.Debug.Log("end process");
+        });
+        thread.IsBackground = true;
+        thread.Start();
+
+    }
+    void BuildingComplete()
+    {
+        UIManager.Instance.Close(typeof(UIBuilding));
+        //地形生成完成，让游戏管理器加载地形
+        GameManager.Instance.StartUpdateBlock();
+    }
+    static void Out_RecvData(object sender, DataReceivedEventArgs e)
+    {
+        UnityEngine.Debug.Log("data:" + e.Data);
+        thread.Abort();
+        buildingFlag = true;
     }
 }

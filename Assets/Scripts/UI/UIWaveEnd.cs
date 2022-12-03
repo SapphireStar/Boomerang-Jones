@@ -65,7 +65,8 @@ public class UIWaveEnd : UIWindow
     static UIBuilding go;
     public void OnClickChangeTerrain()
     {
-        go = UIManager.Instance.Show<UIBuilding>();
+        GameManager.Instance.ChangeTerrain();
+/*        go = UIManager.Instance.Show<UIBuilding>();
         //StartCoroutine(ChangeTerrain());
         thread = new Thread(() => //使用多线程调用脚本，防止阻塞
         {
@@ -87,7 +88,7 @@ public class UIWaveEnd : UIWindow
             UnityEngine.Debug.Log("end process");
         });
         thread.IsBackground = true;
-        thread.Start();
+        thread.Start();*/
 
     }
     void BuildingComplete()
