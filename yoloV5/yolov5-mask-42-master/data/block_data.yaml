@@ -1,0 +1,12 @@
+# Custom data for safety helmet
+
+
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+train: D:\yoloV5\yolo_blocks\score\images\train
+val: D:\yoloV5\yolo_blocks\score\images\val
+
+# number of classes
+nc: 3
+
+# class names
+names: ['red', 'orange', 'green']

@@ -291,8 +291,12 @@ public class GameManager : MonoSingleton<GameManager>
     }
     static void Out_RecvData(object sender, DataReceivedEventArgs e)
     {
-        UnityEngine.Debug.Log("data:" + e.Data);
-        thread.Abort();
-        buildingFlag = true;
+        if (e.Data.Equals("Complete"))
+        {
+            UnityEngine.Debug.Log("data:" + e.Data);
+            thread.Abort();
+            buildingFlag = true;
+        }
+
     }
 }
